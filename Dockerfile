@@ -24,6 +24,7 @@ WORKDIR /app
 COPY requirements.txt ./
 RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch==2.15.0+cpu" \
     && pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade "setuptools>=84.1.0"
 
 # Code + cấu hình + eval (eval cần để eval mọi thứ cũng chạy được trong image)
 COPY itlr ./itlr

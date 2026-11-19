@@ -217,3 +217,50 @@ ALTER TABLE courses ADD COLUMN IF NOT EXISTS crawl_hash TEXT NOT NULL DEFAULT ''
 ALTER TABLE courses ADD COLUMN IF NOT EXISTS source_updated_at TEXT NOT NULL DEFAULT '';
 ALTER TABLE courses ADD COLUMN IF NOT EXISTS source_fetched_at TEXT NOT NULL DEFAULT '';
 ALTER TABLE messages ADD COLUMN IF NOT EXISTS metadata JSONB NOT NULL DEFAULT '{}'::jsonb;
+
+-- A committed, explicitly approved plan also records the tool's durable audit and idempotency key.
+CREATE TABLE IF NOT EXISTS agent_saved_plans (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  idempotency_key VARCHAR(128) NOT NULL,
+  track TEXT NOT NULL CHECK (track IN ('python', 'web', 'devops')),
+  preview_hash CHAR(64) NOT NULL,
+  plan JSONB NOT NULL,
+  request_id UUID NOT NULL,
+  saved_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (user_id, idempotency_key)
+);
+
+CREATE TABLE IF NOT EXISTS agent_handoffs (
+  id UUID PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  idempotency_key VARCHAR(128) NOT NULL,
+  detail TEXT NOT NULL CHECK (char_length(detail) BETWEEN 1 AND 1000),
+  detail_hash CHAR(64) NOT NULL,
+  request_id UUID NOT NULL,
+  status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'resolved')),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  resolved_at TIMESTAMPTZ,
+  resolved_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
+  resolve_request_id UUID,
+  UNIQUE (user_id, idempotency_key),
+  CHECK ((status = 'resolved') = (resolved_at IS NOT NULL AND resolve_request_id IS NOT NULL))
+);
+CREATE INDEX IF NOT EXISTS idx_agent_handoffs_pending
+  ON agent_handoffs (created_at, id) WHERE status = 'pending';
+
+CREATE TABLE IF NOT EXISTS agent_jobs (
+  id BIGSERIAL PRIMARY KEY,
+  job_key VARCHAR(128) UNIQUE NOT NULL,
+  kind TEXT NOT NULL CHECK (kind IN ('ingest', 'embed')),
+  state TEXT NOT NULL DEFAULT 'queued' CHECK (state IN ('queued', 'running', 'succeeded', 'dead')),
+  attempts INTEGER NOT NULL DEFAULT 0 CHECK (attempts >= 0),
+  max_attempts INTEGER NOT NULL CHECK (max_attempts BETWEEN 1 AND 10),
+  claim_token UUID,
+  lease_until TIMESTAMPTZ,
+  available_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  exit_code INTEGER,
+  CHECK ((state = 'running') = (claim_token IS NOT NULL AND lease_until IS NOT NULL))
+);
+CREATE INDEX IF NOT EXISTS idx_agent_jobs_claim
+  ON agent_jobs (available_at,id) WHERE state IN ('queued', 'running');

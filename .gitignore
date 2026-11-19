@@ -10,6 +10,9 @@ dist/
 # Secrets — KHÔNG commit (.env.example / .env.docker.example là template được theo repo)
 .env
 .env.docker
+.env.agent
+.env.local
+.env.*.local
 deploy/*.env
 deploy/backups/
 
@@ -26,8 +29,9 @@ var/data/last_build.json
 .DS_Store
 *.swp
 
-# reports/ GIỮ trong repo: là kết quả eval lặp lại được (từ eval/run_all.py),
-# ai checkout cần thấy số thật đi kèm code.
+# Giữ báo cáo nghiệm thu trong Git. CI tải JUnit XML lên dưới dạng artifact.
+/reports/pytest.xml
+/graphify-out/
 
 # Local model runtimes/download caches
 var/cache/
@@ -43,3 +47,4 @@ var/data/.refresh.lock
 
 # Python coverage data (local)
 .coverage
+.coverage.*

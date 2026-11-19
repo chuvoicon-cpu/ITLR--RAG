@@ -1,3 +1,4 @@
+import { handleAgentTool, handlePendingHandoffs, handleResolveHandoff } from "./agent.routes";
 import { handleChat, handleChatStream } from "./chat.handlers";
 import { validateUploads } from "../middleware/uploads";
 import path from "node:path";
@@ -55,6 +56,10 @@ apiRouter.get("/realtime", requireAuth, async (req, res) => {
     res.write(`event: presence_snapshot\ndata: ${JSON.stringify({ online })}\n\n`);
   } catch {  }
 });
+
+apiRouter.post("/agent/tools", requireAuth, handleAgentTool);
+apiRouter.get("/agent/handoffs", requireAuth, handlePendingHandoffs);
+apiRouter.post("/agent/handoffs/:id/resolve", requireAuth, handleResolveHandoff);
 
 apiRouter.post("/chat", requireAuth, handleChat);
 apiRouter.post("/chat/stream", requireAuth, handleChatStream);

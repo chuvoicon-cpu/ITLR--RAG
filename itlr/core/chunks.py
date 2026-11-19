@@ -1,25 +1,21 @@
-"""Chunk-level FAISS + BM25 retrieval with RRF and bounded cross-encoding."""
+"""Chunk-level dense + BM25 retrieval with RRF and bounded cross-encoding."""
 import numpy as np
 
 from itlr.retrieval.bm25 import BM25Index
+from itlr.retrieval.vector_store import FAISSVectorStore, VectorStore
 
 
 class ChunkIndex:
-    def __init__(self, rows, vectors):
-        import faiss
+    def __init__(self, rows, vectors=None, *, dense_store: VectorStore | None = None):
         self.rows = rows
-        vectors = np.asarray(vectors, dtype='float32')
-        if (vectors.ndim != 2 or len(rows) != len(vectors) or not rows
-                or not np.isfinite(vectors).all()
-                or np.any(np.linalg.norm(vectors, axis=1) == 0)):
+        self.dense_store = FAISSVectorStore(vectors) if dense_store is None else dense_store
+        if not rows or self.dense_store.size != len(rows):
             raise ValueError('Invalid chunk vectors or ownership')
         keys = [(int(r['item_id']), int(r['chunk_idx'])) for r in rows]
         if len(set(keys)) != len(keys):
             raise ValueError('Duplicate chunk identifiers')
-        vectors = vectors.copy()
-        faiss.normalize_L2(vectors)
-        self.ann = faiss.IndexFlatIP(vectors.shape[1])
-        self.ann.add(vectors)
+        if isinstance(self.dense_store, FAISSVectorStore):
+            self.ann = self.dense_store.index  # compatibility for FAISS consumers
         self.bm25 = BM25Index().fit([r['chunk_text'] for r in rows])
 
     def search(self, query, vector, *, top_k=8, candidate_k=32, reranker=None,
@@ -29,12 +25,11 @@ class ChunkIndex:
             raise ValueError('Positive retrieval limits required')
         candidate_k = max(candidate_k, top_k)
         vector = np.asarray(vector, dtype='float32').reshape(1, -1).copy()
-        if (vector.shape[1] != self.ann.d or not np.isfinite(vector).all()
-                or not np.linalg.norm(vector)):
+        if (vector.shape[1] != self.dense_store.dimension or not np.isfinite(vector).all()
+                or not 0 < np.linalg.norm(vector) < np.inf):
             raise ValueError('Invalid query vector')
         faiss.normalize_L2(vector)
-        scores, ids = self.ann.search(vector, len(self.rows))
-        dense_scores = dict(zip(ids[0].tolist(), np.clip(scores[0], -1., 1.).tolist()))
+        dense_scores = self.dense_store.dense_search(vector, min_relevance=min_relevance)
 
         def select(ranking):
             selected, seen = [], set()
@@ -48,9 +43,9 @@ class ChunkIndex:
                     break
             return selected
 
-        allowed = {i for i,r in enumerate(self.rows)
-                   if (allowed_item_ids is None or int(r['item_id']) in allowed_item_ids)
-                   and dense_scores[i] + 1e-6 >= min_relevance}
+        allowed = {i for i, score in dense_scores.items()
+                   if (allowed_item_ids is None or int(self.rows[i]['item_id']) in allowed_item_ids)
+                   and score + 1e-6 >= min_relevance}
         dense = select(sorted(allowed, key=lambda i: (-dense_scores[i], i)))
         lexical = self.bm25.score_query(query)
         sparse = select(sorted((i for i,s in enumerate(lexical) if s > 0 and i in allowed),

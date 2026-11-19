@@ -6,6 +6,7 @@ reports
 tests
 docs
 .env
+.env.agent
 **/*.env
 **/__pycache__
 **/*.pyc

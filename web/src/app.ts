@@ -49,6 +49,15 @@ app.get("/ready", async (_req, res) => {
   catch { res.status(503).json({ status: "unavailable" }); }
 });
 
+app.use((req, res, next) => {
+  if (req.headers["x-tenant-id"] !== undefined || req.query.tenant_id !== undefined ||
+      Object.prototype.hasOwnProperty.call(req.body ?? {}, "tenant_id")) {
+    res.status(400).json({ error: "tenant_selection_unavailable" });
+    return;
+  }
+  next();
+});
+
 app.use(loadUser);
 
 app.use(csrfProtection);

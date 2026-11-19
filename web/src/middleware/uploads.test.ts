@@ -11,6 +11,10 @@ it("identifies PNG from bytes rather than client headers", () => {
   const png = Buffer.alloc(33); Buffer.from("89504e470d0a1a0a", "hex").copy(png); png.write("IHDR", 12); png.writeUInt32BE(10, 16); png.writeUInt32BE(10, 20);
   expect(inspectUpload(file("image.png", "image/png", png))).toBe("image/png");
 });
+it("identifies a GIF with valid screen dimensions", () => {
+  const gif = Buffer.from("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7", "base64");
+  expect(inspectUpload(file("image.gif", "application/octet-stream", gif))).toBe("image/gif");
+});
 it("quarantines invalid files before invoking the route", () => {
   const req = { file: file("bad.pdf", "application/pdf", Buffer.from("html")) };
   let status = 0, next = false;

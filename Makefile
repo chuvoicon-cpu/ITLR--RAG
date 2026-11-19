@@ -4,7 +4,7 @@ VENV := .venv
 PY := $(VENV)/bin/python
 PIP := $(VENV)/bin/pip
 
-.PHONY: venv install build serve test eval-quick eval-full load-models clean
+.PHONY: venv install build serve test eval-quick eval-full load-models
 
 venv:
 	python3 -m venv $(VENV)
@@ -33,6 +33,3 @@ eval-quick:
 
 eval-full:
 	$(PY) eval/run_all.py
-
-clean:
-	rm -rf var/artifacts reports

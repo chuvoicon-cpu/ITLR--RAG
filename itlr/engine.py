@@ -37,6 +37,16 @@ class RecommenderEngine:
         self.artifact_fingerprint = None
 
     def search(self, query, item_type=None, min_pct=DEFAULT_SEARCH_MIN_PCT):
+        from itlr.retrieval.cache import public_query
+
+        retrieval = self.search_index.get("retrieval")
+        cache = getattr(retrieval, "cache", None)
+        # Fixed public glossary terms have no per-user context.
+        if cache is not None and retrieval.reranker is None and public_query(query):
+            return cache.read("response", [query, item_type, min_pct, "search"], lambda: self._search(query, item_type, min_pct))
+        return self._search(query, item_type, min_pct)
+
+    def _search(self, query, item_type, min_pct):
         """Tìm kiếm ngữ nghĩa — logic hiểu truy vấn của tab Tìm kiếm.
 
         Mở rộng viết tắt + sửa lỗi chính tả + bổ sung tên/chủ đề khái niệm (nếu truy vấn
@@ -140,10 +150,13 @@ def _load_engine():
 
     Ném FileNotFoundError nếu thiếu artifacts -> caller hiển thị hướng dẫn build.
     """
-    from itlr.versioning import verify_integrity
+    from itlr.versioning import VersionError, probe_ok, verify_integrity
 
+    backend = os.environ.get("ITLR_VECTOR_BACKEND", "faiss")
+    if backend not in {"faiss", "qdrant"}:
+        raise VersionError("Unknown ITLR_VECTOR_BACKEND")
     active_dir = config.current_dir()
-    verify_integrity(active_dir, required=os.environ.get("ITLR_REQUIRE_ARTIFACT_MANIFEST") == "1")
+    verify_integrity(active_dir, required=backend == "qdrant" or os.environ.get("ITLR_REQUIRE_ARTIFACT_MANIFEST") == "1")
     manifest_path = active_dir / "MANIFEST.json"
     fingerprint = {
         "version": active_dir.name if active_dir.parent.name == "versions" else None,
@@ -188,7 +201,23 @@ def _load_engine():
         search_index["chunk_meta"] = (chunk_meta.get("rows", []) if isinstance(chunk_meta, dict)
                                       else chunk_meta.to_dict("records") if hasattr(chunk_meta, "to_dict") else chunk_meta)
 
-    if (active_dir / "chunk_embeddings.pkl").is_file():
+    if backend == "qdrant":
+        from itlr.core.chunks import ChunkIndex
+        from itlr.core.embeddings import PRESETS
+        from itlr.retrieval.qdrant_artifacts import require_active_alias, version_store
+
+        preset = PRESETS["e5-base"]
+        if (not has_chunk_meta or not probe_ok(active_dir)
+                or any(meta.get(key) != preset[key] for key in ("model_name", "query_prefix", "passage_prefix"))):
+            raise VersionError("Qdrant requires probed E5-base chunk artifacts")
+        rows = search_index["chunk_meta"]
+        store = version_store(fingerprint["manifest_sha256"], len(rows), preset["dim"])
+        store.health()
+        require_active_alias(store)
+        search_index["chunks"] = ChunkIndex(rows, dense_store=store)
+        fingerprint["vector_backend"] = "qdrant"
+        fingerprint["collection"] = store.collection
+    elif (active_dir / "chunk_embeddings.pkl").is_file():
         if not has_chunk_meta:
             # Nửa bộ artifacts (bản chép nửa vời / GC giữa chừng): fail-closed trước
             # nhập ChunkIndex — bản 503 của API, không hề KeyError 500.
@@ -215,8 +244,12 @@ def _load_engine():
 
     if search_index.get("chunks") is not None:
         from itlr.retrieval.service import RetrievalService
-        search_index["retrieval"] = RetrievalService(search_index["chunks"],items,model,
-                                                     search_index["query_prefix"],reranker)
+        from itlr.retrieval.cache import configured_public_cache
+
+        cache = (configured_public_cache(fingerprint["collection"], meta["model_name"])
+                 if backend == "qdrant" else None)
+        search_index["retrieval"] = RetrievalService(search_index["chunks"], items, model,
+                                                     search_index["query_prefix"], reranker, cache=cache)
 
     chatbot = EducationalChatbot(
         items, retrieval_model, search_index=search_index, embed_model=model,

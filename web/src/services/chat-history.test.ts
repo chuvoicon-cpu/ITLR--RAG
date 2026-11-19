@@ -9,14 +9,14 @@ it("does not load another user's history", async () => {
   expect(db.query).toHaveBeenCalledExactlyOnceWith(expect.stringContaining("user_id = $2"), [9, 2]);
 });
 it("loads the authenticated conversation's last twenty messages in chronological order", async () => {
-  db.query.mockResolvedValueOnce([{}]).mockResolvedValueOnce([{ role: "assistant", content: "a" }, { role: "user", content: "q" }]);
+  db.query.mockResolvedValueOnce([{ role: "user", content: "q" }, { role: "assistant", content: "a" }]);
   expect(await ownedChatHistory(2, 9)).toEqual([{ role: "user", content: "q" }, { role: "assistant", content: "a" }]);
 });
 
 it("bounds provider history without changing stored messages or splitting Unicode", async () => {
   const content = "a" + "😀".repeat(2500);
   const rows = [{ role: "assistant", content }];
-  db.query.mockResolvedValueOnce([{}]).mockResolvedValueOnce(rows);
+  db.query.mockResolvedValueOnce(rows);
   const history = await ownedChatHistory(2, 9);
   expect(history![0].content.length).toBeLessThanOrEqual(4000);
   expect(history![0].content).not.toMatch(/[\uD800-\uDBFF]$/);
@@ -24,7 +24,7 @@ it("bounds provider history without changing stored messages or splitting Unicod
 });
 
 it("omits empty legacy messages from provider context", async () => {
-  db.query.mockResolvedValueOnce([{}]).mockResolvedValueOnce([{ role: "assistant", content: "" }]);
+  db.query.mockResolvedValueOnce([{ role: "assistant", content: "" }]);
   expect(await ownedChatHistory(2, 9)).toEqual([]);
 });
 it("locks ownership before saving and commits both messages together", async () => {
@@ -50,4 +50,10 @@ it("stores final source and validation metadata together with the assistant answ
   const metadata = { sources: [{ item_id: 7, title: "Docs", excerpt: "reference" }], citation_validation: { status: "valid", semantic_grounding: "not_verified" } };
   await saveChat(2, 9, "q", "[item_id:7]", metadata);
   expect(db.client.query).toHaveBeenCalledWith(expect.stringContaining("metadata)"), [9, "q", "[item_id:7]", JSON.stringify(metadata)]);
+});
+
+it("queries owner and message history in one PostgreSQL snapshot", async () => {
+  db.query.mockResolvedValue([{ role: "user", content: "question" }]);
+  expect(await ownedChatHistory(2, 9)).toEqual([{ role: "user", content: "question" }]);
+  expect(db.query).toHaveBeenCalledExactlyOnceWith(expect.stringContaining("LEFT JOIN LATERAL"), [9, 2]);
 });

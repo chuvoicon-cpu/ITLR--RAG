@@ -18,12 +18,15 @@ os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS_WARNING", "1")
 
 import itlr.utils.runtime_patches  # noqa: F401,E402  (dọn nhiễu console trước khi nạp model)
 
+import asyncio  # noqa: E402
 import json  # noqa: E402
 import time  # noqa: E402
 from contextlib import asynccontextmanager, aclosing  # noqa: E402
 from pathlib import Path  # noqa: E402
 from typing import List, Optional, Union  # noqa: E402
+from uuid import uuid4  # noqa: E402
 
+from anyio.to_thread import run_sync  # noqa: E402
 from fastapi import Depends, FastAPI, HTTPException, Request  # noqa: E402
 from fastapi.responses import (  # noqa: E402
     FileResponse,
@@ -31,13 +34,16 @@ from fastapi.responses import (  # noqa: E402
     PlainTextResponse,
 )  # noqa: E402
 from fastapi.staticfiles import StaticFiles  # noqa: E402
-from pydantic import BaseModel, Field, field_validator  # noqa: E402
+from pydantic import BaseModel, ConfigDict, Field, field_validator  # noqa: E402
 
 from itlr.api.streaming import ClosingStreamingResponse
 from itlr.api import ratelimit  # noqa: E402
+from itlr.chatbot.agent_tools import request_id  # noqa: E402
+from itlr.chatbot.llm_client import configured_provider  # noqa: E402
 from itlr.observability import metrics as obs  # noqa: E402
 from itlr.observability.tracing import init_tracing, span  # noqa: E402
 from itlr.engine import load_engine  # noqa: E402
+from itlr.retrieval.cache import CacheBusy  # noqa: E402
 from itlr.retrieval.service import DEFAULT_SEARCH_MIN_PCT  # noqa: E402
 from itlr.versioning import VersionError  # noqa: E402
 
@@ -77,7 +83,10 @@ def _rate_dependency(bucket: str, default_per_min: int):
     return dep
 
 _search_rate = _rate_dependency("SEARCH", RATE_SEARCH_DEFAULT)
-_chat_rate = _rate_dependency("CHAT", RATE_CHAT_DEFAULT)
+def _chat_rate(request: Request) -> None:
+    ratelimit.enforce_chat(request, RATE_CHAT_DEFAULT)
+
+
 _admin_rate = _rate_dependency("ADMIN", RATE_ADMIN_DEFAULT)
 
 
@@ -94,15 +103,8 @@ def _log(msg):
 
 
 def _prewarm_ollama():
-    """Nạp sẵn model Ollama vào RAM (chạy nền) để câu hỏi chatbot đầu tiên không bị cold-start
-    ~90s (nguyên nhân hay gây timeout ở câu đầu). Bỏ qua nếu đã có API key OpenAI hoặc
-    USE_OLLAMA bị tắt tường minh — khớp cách _llm_available tự phát hiện Ollama."""
-    _prewarm_ollama_skip = bool(
-        os.environ.get("DEEPSEEK_API_KEY") or os.environ.get("OPENAI_API_KEY"))
-    if _prewarm_ollama_skip:
-        _log("[i] Có key LLM cloud (DeepSeek/OpenAI) — bỏ qua pre-warm Ollama.")
-        return
-    if str(os.environ.get("USE_OLLAMA", "")).lower() in ("0", "false", "no"):
+    """Prewarm the local model only when routing selects Ollama."""
+    if configured_provider() != "ollama":
         return
     import threading
     import urllib.request
@@ -132,20 +134,18 @@ def _prewarm_ollama():
 
 
 def _provider_label() -> str:
-    """Bounded provider label; no model prompts or keys."""
-    if str(os.environ.get("USE_OLLAMA", "")).lower() in ("1", "true", "yes"):
-        return "ollama"
-    if os.environ.get("DEEPSEEK_API_KEY"):
-        return "deepseek"
-    if os.environ.get("OPENAI_API_KEY"):
-        return "openai"
-    return "template"
+    """Label configured routing without probing the provider on the metrics path."""
+    provider = configured_provider()
+    return "template" if provider == "none" else provider
 
 
 @asynccontextmanager
 async def lifespan(_app):
     """Nạp artifacts ngay khi khởi động để lỗi thiếu artifacts lộ sớm, request đầu nhanh."""
+    from itlr.chatbot.llm_client import validate_staging_provider
+
     ratelimit.validate_workers()
+    validate_staging_provider()
     if init_tracing("itlr-api"):
         _log("[i] OpenTelemetry tracing bật (OTLP exporter).")
     try:
@@ -171,7 +171,13 @@ _METRICS = {"requests_total": 0, "errors_total": 0, "by_route": {}}
 @app.middleware("http")
 async def _trace_request(request: Request, call_next):
     with span("http.request", method=request.method) as current:
-        response = await call_next(request)
+        correlation = uuid4().hex
+        token = request_id.set(correlation)
+        try:
+            response = await call_next(request)
+        finally:
+            request_id.reset(token)
+        response.headers["X-Request-ID"] = correlation
         route = request.scope.get("route")
         if current is not None:
             current.set_attribute("route", getattr(route, "path", "unmatched"))
@@ -181,6 +187,8 @@ async def _trace_request(request: Request, call_next):
 
 @app.middleware("http")
 async def _track_metrics(request: Request, call_next):
+    if 'x-tenant-id' in request.headers or 'tenant_id' in request.query_params:
+        return JSONResponse(status_code=400, content={'detail': 'Tenant selection is unavailable'})
     t0 = time.perf_counter()
     _METRICS["requests_total"] += 1
     try:
@@ -223,6 +231,12 @@ def health():
         eng = load_engine()
     except (FileNotFoundError, VersionError):
         raise _artifact_load_error()
+    chunks = (getattr(eng, "search_index", None) or {}).get("chunks")
+    if chunks is not None:
+        try:
+            chunks.dense_store.health()
+        except VersionError:
+            raise _artifact_load_error() from None
     fingerprint = getattr(eng, "artifact_fingerprint", None) or {}
     items = int(len(eng.items)) if getattr(eng, "items", None) is not None else 0
     obs.set_artifact_info(fingerprint.get("version"), fingerprint.get("manifest_sha256"), items)
@@ -271,6 +285,8 @@ def prometheus_metrics(request: Request):
 
 
 class SearchReq(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     query: str = Field(min_length=1, max_length=QUERY_MAX_CHARS)
     type: Optional[str] = Field(default=None, max_length=50)
     min_pct: int = Field(default=DEFAULT_SEARCH_MIN_PCT, ge=0, le=100)
@@ -289,6 +305,8 @@ class ChatMsg(BaseModel):
 
 
 class ChatReq(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     message: str = Field(min_length=1, max_length=CHAT_MESSAGE_MAX_CHARS)
     history: List[ChatMsg] = []
 
@@ -328,7 +346,13 @@ def api_search(req: SearchReq):
     item_type = req.type if req.type in ("Khóa học", "Tài liệu") else None
     started = time.perf_counter()
     with span("retrieval.search"):
-        result = eng.search(req.query, item_type=item_type, min_pct=req.min_pct)
+        try:
+            result = eng.search(req.query, item_type=item_type, min_pct=req.min_pct)
+        except CacheBusy:
+            raise HTTPException(status_code=503, detail='Knowledge cache fill is busy',
+                                headers={'Retry-After': '1'}) from None
+        except VersionError:
+            raise _artifact_load_error() from None
         obs.observe_retrieval("search", time.perf_counter() - started)
     return result
 
@@ -343,23 +367,27 @@ def api_chat(req: ChatReq):
     eng = _engine()
     history = _history_payload(req)
     provider = _provider_label()
-    with span("generation.chat", provider=provider):
-        try:
-            started = time.perf_counter()
-            result = eng.chat(req.message, history=history)
-            mode = str(result.get("generation_mode") or "unknown")
-            obs.observe_llm(provider, mode, time.perf_counter() - started)
-            obs.observe_generation(mode, ((result.get("citation_validation") or {}).get("status")))
-        except Exception as e:  # noqa: BLE001
-            _log(f"[!] /api/chat lỗi: {e}")
-            obs.observe_generation("error", None)
-            # 503: lỗi TẠM THỜI ở tầng chatbot/LLM — client thấy rõ lỗi kiểu HTTP,
-            # báo cáo lỗi không còn bị che bởi HTTP 200 "giả thành công".
-            return JSONResponse(
-                status_code=503,
-                content={"response": _CHAT_ERROR_MSG, "recommendations": [],
-                         "intent": "error"})
-    return result
+    release = ratelimit.acquire_chat_slot()
+    try:
+        with span("generation.chat", provider=provider):
+            try:
+                started = time.perf_counter()
+                result = eng.chat(req.message, history=history)
+                mode = str(result.get("generation_mode") or "unknown")
+                obs.observe_llm(provider, mode, time.perf_counter() - started)
+                obs.observe_generation(mode, ((result.get("citation_validation") or {}).get("status")))
+            except Exception as e:  # noqa: BLE001
+                _log(f"[!] /api/chat lỗi: {e}")
+                obs.observe_generation("error", None)
+                # 503: lỗi TẠM THỜI ở tầng chatbot/LLM — client thấy rõ lỗi kiểu HTTP,
+                # báo cáo lỗi không còn bị che bởi HTTP 200 "giả thành công".
+                return JSONResponse(
+                    status_code=503,
+                    content={"response": _CHAT_ERROR_MSG, "recommendations": [],
+                             "intent": "error"})
+        return result
+    finally:
+        release()
 
 
 @app.post("/api/chat/stream", dependencies=[Depends(_chat_rate)])
@@ -387,19 +415,20 @@ async def api_chat_stream(req: ChatReq):
         final: dict | None = None
         result = "aborted"
         try:
-            async with aclosing(events):
-                async for ev, data in events:
-                    if ev == "text":
-                        if ttft is None:
-                            ttft = time.perf_counter() - started
-                            obs.observe_ttft(provider, ttft)
-                        yield _frame({"type": "text", "text": data})
-                    elif ev == "sources":
-                        yield _frame({"type": "sources", "sources": data})
-                    elif ev in {"meta", "final"}:
-                        if ev == "final":
-                            final = data
-                        yield _frame({"type": ev, **data})
+            async with asyncio.timeout(300):
+                async with aclosing(events):
+                    async for ev, data in events:
+                        if ev == "text":
+                            if ttft is None:
+                                ttft = time.perf_counter() - started
+                                obs.observe_ttft(provider, ttft)
+                            yield _frame({"type": "text", "text": data})
+                        elif ev == "sources":
+                            yield _frame({"type": "sources", "sources": data})
+                        elif ev in {"meta", "final"}:
+                            if ev == "final":
+                                final = data
+                            yield _frame({"type": ev, **data})
             yield _frame({"type": "done"})
             result = "done"
         except Exception as e:  # noqa: BLE001
@@ -430,6 +459,7 @@ async def api_chat_stream(req: ChatReq):
     return ClosingStreamingResponse(
         gen(),
         media_type="text/event-stream",
+        release=await run_sync(ratelimit.acquire_chat_slot),
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
 

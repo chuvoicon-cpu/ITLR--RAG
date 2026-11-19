@@ -17,12 +17,20 @@ export async function handleChat(req: Request, res: Response) {
   const { message, conversation_id } = parsed.data;
   const history = await ownedChatHistory(req.user!.id, conversation_id);
   if (history === null) return res.status(404).json({ error: "Không tìm thấy cuộc trò chuyện." });
+  const controller = new AbortController();
+  const disconnect = () => controller.abort();
+  res.once("close", disconnect);
+  if (res.destroyed) controller.abort();
   try {
-    const data = finalChatSchema.parse({ ...await recommender.chat(message, history), type: "final" });
+    if (controller.signal.aborted) return;
+    const data = finalChatSchema.parse({ ...await recommender.chat(message, history, req.user!.id, controller.signal), type: "final" });
+    if (controller.signal.aborted) return;
     const id = await saveChat(req.user!.id, conversation_id, message, data.response, { sources: data.sources, generation_mode: data.generation_mode, citation_validation: data.citation_validation });
     res.json({ ...data, response_html: renderChatMd(data.response, data.sources), conversation_id: id });
   } catch {
-    res.status(502).json({ error: "Không hoàn tất được câu trả lời hoặc lưu lịch sử. Hãy thử lại." });
+    if (!controller.signal.aborted) res.status(502).json({ error: "Không hoàn tất được câu trả lời hoặc lưu lịch sử. Hãy thử lại." });
+  } finally {
+    res.off("close", disconnect);
   }
 }
 
@@ -47,7 +55,7 @@ export async function handleChatStream(req: Request, res: Response) {
   let outcome: "done" | "error" | "aborted" = "aborted";
   try {
     let final: FinalChat | undefined;
-    for await (const event of recommender.chatStream(message, history, controller.signal)) {
+    for await (const event of recommender.chatStream(message, history, controller.signal, req.user!.id)) {
       if (controller.signal.aborted) break;
       if (event.type === "sources") sourceMs = performance.now() - started;
       if (event.type === "text" && firstTokenMs === null) firstTokenMs = performance.now() - started;

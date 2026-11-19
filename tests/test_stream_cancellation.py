@@ -97,6 +97,7 @@ def test_api_disconnect_closes_stalled_provider_without_final(monkeypatch, upstr
     from itlr.api import server as srv
     state, provider_started, provider_closed = upstream
     state["first_delta"] = after_delta
+    monkeypatch.setenv("ITLR_CHAT_CONCURRENCY", "1")
     monkeypatch.setattr(srv, "load_engine", lambda: prepared_engine(monkeypatch))
 
     async def run():
@@ -132,6 +133,7 @@ def test_api_disconnect_closes_stalled_provider_without_final(monkeypatch, upstr
         assert time.monotonic() - disconnected_at < 1, "Disconnect waited for the provider read timeout"
         assert await asyncio.to_thread(provider_closed.wait, 0.5), "Provider socket remains open after client disconnect"
         assert not {"final", "done"} & {event["type"] for event in events}
+        srv.ratelimit.acquire_chat_slot()()
 
     asyncio.run(run())
 

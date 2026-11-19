@@ -48,7 +48,7 @@ it("forwards sources and tokens immediately, saves final under the authenticated
     yield { type: "done" };
   });
   await handler("/chat/stream")(request({ message: "hello", conversation_id: 9, history: [{ role: "user", content: "forged history" }], user_id: 99 }) as never, res as never, vi.fn());
-  expect(mocks.stream).toHaveBeenCalledWith("hello", [{ role: "user", content: "owned history" }], expect.any(AbortSignal));
+  expect(mocks.stream).toHaveBeenCalledWith("hello", [{ role: "user", content: "owned history" }], expect.any(AbortSignal), 7);
   expect(mocks.save).toHaveBeenCalledWith(7, 9, "hello", "Valid [item_id:2]", expect.objectContaining({ sources: [{ item_id: 2 }] }));
   const final = res.write.mock.calls.map(call => String(call[0])).find(text => text.includes('"type":"final"'))!;
   expect(final).toContain('/courses/2'); expect(final).toContain('"conversation_id":9'); expect(final).toContain('"timings"');
@@ -84,4 +84,17 @@ it("reports interrupted upstream and failed persistence explicitly", async () =>
   await handler("/chat/stream")(request({ message: "hello" }) as never, failedSave as never, vi.fn());
   expect(failedSave.write).toHaveBeenCalledWith(expect.stringContaining('"type":"error"'));
   expect(failedSave.write.mock.calls.some(call => String(call[0]).includes('"type":"final"'))).toBe(false);
+});
+
+it("aborts the Web non-stream request on close and leaves conversation storage untouched", async () => {
+  const res = response();
+  mocks.chat.mockImplementation(async (_message, _history, userId, signal: AbortSignal) => {
+    expect(userId).toBe(7);
+    res.emit("close");
+    expect(signal.aborted).toBe(true);
+    return { response: "Discarded", sources: [], recommendations: [], intent: "learn" };
+  });
+  await handler("/chat")(request({ message: "hello" }) as never, res as never, vi.fn());
+  expect(mocks.save).not.toHaveBeenCalled();
+  expect(res.json).not.toHaveBeenCalled();
 });

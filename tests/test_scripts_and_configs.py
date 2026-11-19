@@ -86,3 +86,27 @@ def test_scripts_build_all_help():
         capture_output=True, text=True, timeout=60, cwd=str(ROOT),
     )
     assert r.returncode == 0, f"--help phải rc=0. stderr: {r.stderr[:400]}"
+
+
+def test_package_and_requirements_install_the_same_dependencies():
+    project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
+    package_deps = project["dependencies"] + [
+        dep for group in project["optional-dependencies"].values() for dep in group
+    ]
+    requirements = [
+        line.split("#", 1)[0].strip()
+        for line in (ROOT / "requirements.txt").read_text(encoding="utf-8").splitlines()
+    ]
+    requirements = [line for line in requirements if line]
+    assert set(requirements) == set(package_deps)
+    assert len(requirements) == len(set(requirements))
+
+
+def test_package_declares_agent_knowledge_data():
+    package_data = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
+    chatbot_patterns = package_data["tool"]["setuptools"]["package-data"].get("itlr.chatbot", [])
+    for name in ("it_roles.json", "it_glossary.json"):
+        assert any(
+            ROOT / "itlr/chatbot/data" / name in (ROOT / "itlr/chatbot").glob(pattern)
+            for pattern in chatbot_patterns
+        ), f"Missing packaged agent knowledge file: {name}"

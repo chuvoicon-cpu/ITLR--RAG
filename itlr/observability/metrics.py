@@ -27,6 +27,8 @@ LLM_TTFT = Histogram(
     buckets=_BUCKETS_LLM)
 LLM_TOKENS = Counter(
     "itlr_llm_tokens", "Provider-reported tokens (never content)", ["provider", "kind"])
+LLM_CACHE_USAGE = Counter(
+    "itlr_llm_cache_metadata", "Provider prompt cache metadata availability", ["provider", "status"])
 GENERATION_MODES = Counter(
     "itlr_generation_modes", "Final generation mode", ["mode"])
 CITATION_STATUS = Counter(

@@ -23,8 +23,13 @@ import urllib.parse
 import urllib.request
 from contextlib import closing
 from dataclasses import dataclass
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from threading import Lock
+from pathlib import Path
 from typing import AsyncIterator, Iterator, Optional
+
+from itlr.chatbot.provider_budget import ProviderBudgetError, check_circuit, circuit_failure, reserve_attempt
 
 logger = logging.getLogger("itlr.llm")
 
@@ -74,6 +79,10 @@ class LLMResult:
     total_tokens: int = 0
     cost_usd: float = 0.0
     retries: int = 0
+    cached_input_tokens: int | None = None
+    uncached_input_tokens: int | None = None
+    priced_cost_usd: float | None = None
+    priced_cache_savings_usd: float | None = None
 
 
 def mask_key(value: str) -> str:
@@ -86,8 +95,13 @@ def mask_key(value: str) -> str:
 
 def _safe_err_text(exc: BaseException) -> str:
     """Chuỗi lỗi an toàn khi log: che mọi key hiện cấu hình nếu vô tình xuất hiện."""
-    text = f"{type(exc).__name__}: {exc}"
-    for key in (api_key("deepseek"), api_key("openai")):
+    error_type = type(exc).__name__
+    try:
+        keys = (api_key("deepseek"), api_key("openai"))
+    except LLMError:
+        return error_type
+    text = f"{error_type}: {exc}"
+    for key in keys:
         if key:
             text = text.replace(key, mask_key(key))
     return text
@@ -95,17 +109,70 @@ def _safe_err_text(exc: BaseException) -> str:
 
 def api_key(provider: str) -> Optional[str]:
     """Key cho provider (chỉ deepseek/openai dùng key; ollama không có)."""
-    if provider == "deepseek":
-        return os.environ.get("DEEPSEEK_API_KEY") or None
-    if provider == "openai":
-        return os.environ.get("OPENAI_API_KEY") or None
-    return None
+    if provider not in DEFAULT_BASE_URLS:
+        return None
+    name = f"{provider.upper()}_API_KEY"
+    value, file = os.environ.get(name), os.environ.get(f"{name}_FILE")
+    if value and file:
+        raise LLMError(f"Configure only one credential source for {provider}")
+    if file:
+        try:
+            value = Path(file).read_text(encoding="utf-8").strip()
+        except (OSError, UnicodeError):
+            raise LLMError(f"Cannot read configured credential for {provider}") from None
+        if not value:
+            raise LLMError(f"Configured credential is empty for {provider}")
+    return value or None
+
+
+def configured_provider() -> str:
+    """Resolve routing without reading credentials or probing a server."""
+    selected = os.environ.get("LLM_PROVIDER", "").strip().lower()
+    if selected == "ollama":
+        return selected
+    for provider in (selected,) if selected else DEFAULT_BASE_URLS:
+        if provider in DEFAULT_BASE_URLS:
+            key = f"{provider.upper()}_API_KEY"
+            if os.environ.get(key) or os.environ.get(f"{key}_FILE"):
+                return provider
+    if selected or os.environ.get("USE_OLLAMA", "").lower() in ("0", "false", "no"):
+        return "none"
+    return "ollama"
+
+
+def validate_staging_provider():
+    if os.environ.get('ITLR_REQUIRE_CLOUD_AUTHORIZATION') != '1':
+        return
+    from itlr.retrieval.cache import configured_redis
+
+    selected = os.environ.get('LLM_PROVIDER', '').strip().lower()
+    if selected in ('none', 'ollama'):
+        return
+    try:
+        allowed = (selected in DEFAULT_BASE_URLS and os.environ.get('ITLR_CLOUD_AUTHORIZED') == '1'
+                   and all(int(os.environ.get(key, '0')) > 0
+                           for key in ('ITLR_LLM_MAX_RPM', 'ITLR_LLM_MAX_TPM'))
+                   and configured_redis() is not None)
+    except ValueError:
+        allowed = False
+    if not allowed:
+        raise LLMError('Staging cloud authorization requires explicit routing and positive shared RPM/TPM quotas')
+    if not api_key(selected):
+        raise LLMError('Missing authorized staging provider credential')
 
 
 def default_model(provider: str) -> str:
     env_map = {"deepseek": "DEEPSEEK_MODEL", "openai": "OPENAI_MODEL",
                "ollama": "OLLAMA_MODEL"}
     return os.environ.get(env_map[provider]) or DEFAULT_MODELS[provider]
+
+
+def selected_model(provider, output_schema):
+    task = 'EVIDENCE' if output_schema is not None else 'CHAT'
+    configured = os.environ.get(f'ITLR_{provider.upper()}_{task}_MODEL', '').strip()
+    if configured:
+        return configured
+    return ollama_model() if provider == 'ollama' else default_model(provider)
 
 
 def base_url(provider: str) -> str:
@@ -169,7 +236,7 @@ def ollama_model() -> str:
 def _ollama_request(messages, *, stream: bool, num_predict: int,
                     temperature: float, output_schema: dict | None = None) -> urllib.request.Request:
     payload = {
-        "model": ollama_model(),
+        "model": selected_model("ollama", output_schema),
         "messages": messages,
         "stream": stream,
         "keep_alive": "2h",
@@ -197,6 +264,7 @@ def ollama_chat(messages, *, num_predict: int = 384, temperature: float = 0.5,
     message = data.get('message')
     if not isinstance(message, dict) or not isinstance(message.get('content'), str):
         raise LLMError('Invalid Ollama text completion')
+    _ollama_usage(data)
     return message['content'].strip()
 
 
@@ -235,6 +303,7 @@ def _stream_ollama(messages, *, num_predict: int = 384, temperature: float = 0.5
             if piece:
                 yield piece
             if obj.get("done"):
+                _ollama_usage(obj)
                 return
     raise LLMError('Ollama stream ended without completion')
 
@@ -244,13 +313,13 @@ def _stream_ollama(messages, *, num_predict: int = 384, temperature: float = 0.5
 
 def provider_status() -> str:
     """Provider đang được cấu hình: 'deepseek' | 'openai' | 'ollama' | 'none'."""
-    if api_key("deepseek"):
-        return "deepseek"
-    if api_key("openai"):
-        return "openai"
-    if str(os.environ.get("USE_OLLAMA", "")).lower() in ("0", "false", "no"):
+    validate_staging_provider()
+    provider = configured_provider()
+    if provider == "ollama":
+        return "ollama" if ollama_reachable() else "none"
+    if provider in DEFAULT_BASE_URLS and not api_key(provider):
         return "none"
-    return "ollama" if ollama_reachable() else "none"
+    return provider
 
 
 def llm_available() -> bool:
@@ -284,6 +353,75 @@ def _record_usage(provider: str, prompt_tokens: int, completion_tokens: int) -> 
         bucket["completion"] += int(completion_tokens)
         bucket["cost_usd"] = round(bucket["cost_usd"] + cost, 8)
     return cost
+
+
+def prompt_cache_usage(provider, usage):
+    """Read only documented counters. A supported provider can report zero hits."""
+    total = getattr(usage, 'prompt_tokens', None)
+    if provider == 'deepseek':
+        hits = getattr(usage, 'prompt_cache_hit_tokens', None)
+        misses = getattr(usage, 'prompt_cache_miss_tokens', None)
+        if type(hits) is int and type(misses) is int and hits >= 0 and misses >= 0 and hits + misses == total:
+            return hits, misses
+    if provider in DEFAULT_BASE_URLS:
+        hits = getattr(getattr(usage, 'prompt_tokens_details', None), 'cached_tokens', None)
+        if type(hits) is int and type(total) is int and 0 <= hits <= total:
+            return hits, total - hits
+    return None, None
+
+
+def _priced_usage(provider, model, hits, misses, completion):
+    prices = os.environ.get('ITLR_LLM_PRICE_JSON')
+    if not prices or hits is None or misses is None or type(completion) is not int or completion < 0:
+        return None, None
+    try:
+        rates = json.loads(prices)[f'{provider}/{model}']
+        cached, uncached, output = [float(rates[key]) for key in ('cached', 'input', 'output')]
+    except (ValueError, TypeError, KeyError):
+        return None, None
+    if not all(math.isfinite(value) and value >= 0 for value in (cached, uncached, output)):
+        return None, None
+    return (round((cached * hits + uncached * misses + output * completion) / 1e6, 10),
+            round((uncached - cached) * hits / 1e6, 10))
+
+
+def record_provider_usage(provider, model, usage):
+    from itlr.observability.metrics import LLM_CACHE_USAGE, LLM_TOKENS, add_tokens
+
+    hits, misses = prompt_cache_usage(provider, usage)
+    prompt = getattr(usage, 'prompt_tokens', None)
+    completion = getattr(usage, 'completion_tokens', None)
+    if type(prompt) is int and prompt >= 0 and type(completion) is int and completion >= 0:
+        _record_usage(provider, prompt, completion)
+        add_tokens(provider, prompt, completion)
+
+    cost, savings = _priced_usage(provider, model, hits, misses, completion)
+    with _USAGE_LOCK:
+        bucket = _USAGE['by_provider'].setdefault(
+            provider, {'calls': 0, 'prompt': 0, 'completion': 0, 'cost_usd': 0.0})
+        missing = 'cache_metadata_missing_calls' if hits is None else 'cache_observed_calls'
+        bucket[missing] = bucket.get(missing, 0) + 1
+        if hits is not None:
+            bucket['cached_input_tokens'] = bucket.get('cached_input_tokens', 0) + hits
+            bucket['uncached_input_tokens'] = bucket.get('uncached_input_tokens', 0) + misses
+        if cost is not None:
+            bucket['priced_calls'] = bucket.get('priced_calls', 0) + 1
+            bucket['priced_cost_usd'] = round(bucket.get('priced_cost_usd', 0.) + cost, 10)
+            bucket['priced_cache_savings_usd'] = round(bucket.get('priced_cache_savings_usd', 0.) + savings, 10)
+
+    LLM_CACHE_USAGE.labels(provider, 'missing' if hits is None else 'reported').inc()
+    if hits is not None:
+        LLM_TOKENS.labels(provider=provider, kind='cached_input').inc(hits)
+        LLM_TOKENS.labels(provider=provider, kind='uncached_input').inc(misses)
+    return hits, misses, cost, savings
+
+
+def _ollama_usage(obj):
+    from types import SimpleNamespace
+
+    record_provider_usage('ollama', obj.get('model') or ollama_model(), SimpleNamespace(
+        prompt_tokens=obj.get('prompt_eval_count'), completion_tokens=obj.get('eval_count'),
+    ))
 
 
 def usage_snapshot() -> dict:
@@ -331,14 +469,37 @@ def _make_client(provider: str, api_key_value: str, timeout_s: float):
 
 
 def _completions_kwargs(provider: str, messages, *, stream: bool,
-                        temperature: float, max_tokens: int) -> dict:
-    return {
-        "model": default_model(provider),
+                        temperature: float, max_tokens: int, output_schema=None) -> dict:
+    result = {
+        "model": selected_model(provider, output_schema),
         "messages": messages,
         "temperature": float(temperature),
         "max_tokens": int(max_tokens),
         "stream": bool(stream),
     }
+    if stream and (provider == 'deepseek' or base_url(provider).rstrip('/') == DEFAULT_BASE_URLS['openai']):
+        result['stream_options'] = {'include_usage': True}
+    return result
+
+
+def _retry_delay(exc, backoff):
+    if backoff > STREAM_RETRY_MAX_BACKOFF:
+        return None
+    status = getattr(exc, 'status_code', None)
+    if status is not None and status not in (408, 409, 429) and status < 500:
+        return None
+    headers = getattr(getattr(exc, 'response', None), 'headers', {})
+    raw = headers.get('Retry-After')
+    if raw:
+        try:
+            try:
+                delay = float(raw)
+            except ValueError:
+                delay = (parsedate_to_datetime(raw) - datetime.now(timezone.utc)).total_seconds()
+        except (ValueError, TypeError, OverflowError):
+            return None
+        return max(backoff, delay) if math.isfinite(delay) and delay <= STREAM_RETRY_MAX_BACKOFF else None
+    return backoff
 
 
 def _retries() -> int:
@@ -346,6 +507,14 @@ def _retries() -> int:
         return max(1, int(os.environ.get("DEEPSEEK_RETRIES", DEFAULT_RETRIES)))
     except ValueError as exc:
         raise LLMError('DEEPSEEK_RETRIES must be an integer') from exc
+
+
+def _reserve_attempt(provider, messages, max_tokens):
+    try:
+        check_circuit(provider)
+        reserve_attempt(provider, messages, max_tokens)
+    except ProviderBudgetError as exc:
+        raise LLMError(str(exc)) from None
 
 
 def _validate_text_completion(choice) -> None:
@@ -372,10 +541,11 @@ def chat(messages, *, track_usage: "str | None" = None,
         timeout_s = timeout_for(provider, stream=False)
         backoff = DEFAULT_BACKOFF_S
         for attempt in range(1, _retries() + 1):
+            _reserve_attempt(provider, messages, max_tokens)
             try:
                 with closing(_make_client(provider, api_key(provider) or "", timeout_s)) as client:
                     kwargs = _completions_kwargs(provider, messages, stream=False,
-                                                 temperature=temperature, max_tokens=max_tokens)
+                                                 temperature=temperature, max_tokens=max_tokens, output_schema=output_schema)
                     resp = client.chat.completions.create(**kwargs)
                     _validate_text_completion(resp.choices[0])
                     text = (resp.choices[0].message.content or "").strip()
@@ -383,31 +553,40 @@ def chat(messages, *, track_usage: "str | None" = None,
                     prompt_tokens = getattr(usage, "prompt_tokens", 0) or 0
                     completion_tokens = getattr(usage, "completion_tokens", 0) or 0
                     total = getattr(usage, "total_tokens", 0) or (prompt_tokens + completion_tokens)
-                    cost = _record_usage(provider, prompt_tokens, completion_tokens)
+                    model = getattr(resp, 'model', None) or selected_model(provider, output_schema)
+                    hits, misses, priced, savings = record_provider_usage(provider, model, usage)
+                    estimated = PRICE_PER_1M[provider]
+                    cost = round((prompt_tokens * estimated['input'] + completion_tokens * estimated['output']) / 1e6, 8)
                     logger.info("llm chat ok provider=%s model=%s attempt=%d tokens=%d cost=%.6f%s",
-                                provider, default_model(provider), attempt, total, cost,
+                                provider, model, attempt, total, cost,
                                 f" tag={track_usage}" if track_usage else "")
                     return LLMResult(text=text, provider=provider,
-                                     model=default_model(provider),
+                                     model=model,
                                      prompt_tokens=prompt_tokens,
                                      completion_tokens=completion_tokens,
-                                     total_tokens=total, cost_usd=cost, retries=attempt - 1)
+                                     total_tokens=total, cost_usd=cost, retries=attempt - 1,
+                                     cached_input_tokens=hits, uncached_input_tokens=misses,
+                                     priced_cost_usd=priced, priced_cache_savings_usd=savings)
             except Exception as exc:  # noqa: BLE001
-                if attempt == _retries():
+                circuit_failure(provider, exc)
+                delay = _retry_delay(exc, backoff)
+                if attempt == _retries() or delay is None:
                     raise LLMError(
                         f"{provider} chat thất bại sau {_retries()} lần thử "
                         f"({_safe_err_text(exc)})") from exc
-                time.sleep(backoff)
+                time.sleep(delay)
                 backoff *= 2
         raise LLMError("không thể gọi LLM")  # không tới được (cho type checker)
 
     # Ollama fallback
+    _reserve_attempt(provider, messages, max_tokens)
     try:
         options = {"output_schema": output_schema} if output_schema is not None else {}
         text = ollama_chat(messages, num_predict=max_tokens, temperature=temperature, **options)
     except Exception as exc:  # noqa: BLE001
+        circuit_failure(provider, exc)
         raise LLMError(f"ollama chat thất bại ({_safe_err_text(exc)})") from exc
-    return LLMResult(text=text, provider="ollama", model=ollama_model())
+    return LLMResult(text=text, provider="ollama", model=selected_model('ollama', output_schema))
 
 
 def stream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
@@ -429,13 +608,17 @@ def stream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
         backoff = DEFAULT_BACKOFF_S
         got_any = False
         for attempt in range(1, _retries() + 1):
+            _reserve_attempt(provider, messages, max_tokens)
             saw_stop = False
+            usage, model = None, selected_model(provider, output_schema)
             try:
                 with closing(_make_client(provider, api_key(provider) or "", timeout_s)) as client:
                     kwargs = _completions_kwargs(provider, messages, stream=True,
-                                                 temperature=temperature, max_tokens=max_tokens)
+                                                 temperature=temperature, max_tokens=max_tokens, output_schema=output_schema)
                     with closing(client.chat.completions.create(**kwargs)) as response:
                         for chunk in response:
+                            model = getattr(chunk, 'model', None) or model
+                            usage = getattr(chunk, 'usage', None) or usage
                             # Usage-only terminal chunks have no completion choices.
                             if not chunk.choices:
                                 continue
@@ -447,26 +630,30 @@ def stream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
                                 yield delta
                     if not saw_stop:
                         logger.warning('%s stream accepted without finish metadata: completion unverified (legacy compatibility)', provider)
+                    record_provider_usage(provider, model, usage)
                     return
             except Exception as exc:  # noqa: BLE001
                 if got_any:
                     raise LLMError(
                         f"{provider} stream đứt giữa chừng ({_safe_err_text(exc)})") from exc
-                if attempt == _retries():
+                circuit_failure(provider, exc)
+                delay = _retry_delay(exc, backoff)
+                if attempt == _retries() or delay is None:
                     raise LLMError(
                         f"{provider} stream thất bại sau {_retries()} lần thử "
                         f"({_safe_err_text(exc)})") from exc
-                if backoff <= STREAM_RETRY_MAX_BACKOFF:
-                    time.sleep(backoff)
+                time.sleep(delay)
                 backoff *= 2
         raise LLMError(f"{provider} stream không sinh được mảnh nào")
 
+    _reserve_attempt(provider, messages, max_tokens)
     try:
         options = {"output_schema": output_schema} if output_schema is not None else {}
         yield from _stream_ollama(messages, num_predict=max_tokens, temperature=temperature, **options)
     except LLMError:
         raise
     except Exception as exc:
+        circuit_failure(provider, exc)
         raise LLMError(f'ollama stream failed ({_safe_err_text(exc)})') from exc
 
 
@@ -494,6 +681,7 @@ async def astream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
     messages = trim_messages(messages, char_budget=char_budget)
     timeout_s = timeout_for(provider, stream=True)
     if provider == "ollama":
+        await asyncio.to_thread(_reserve_attempt, provider, messages, max_tokens)
         import httpx
         req = _ollama_request(messages, stream=True, num_predict=max_tokens, temperature=temperature,
                               output_schema=output_schema)
@@ -514,11 +702,13 @@ async def astream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
                             if piece:
                                 yield piece
                             if obj.get('done'):
+                                _ollama_usage(obj)
                                 return
                 raise LLMError('Ollama stream ended without completion')
         except LLMError:
             raise
         except Exception as exc:
+            await asyncio.to_thread(circuit_failure, provider, exc)
             raise LLMError(f'ollama stream failed ({_safe_err_text(exc)})') from exc
         return
 
@@ -527,14 +717,18 @@ async def astream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
     got_any = False
     backoff = DEFAULT_BACKOFF_S
     for attempt in range(1, _retries() + 1):
+        await asyncio.to_thread(_reserve_attempt, provider, messages, max_tokens)
         saw_stop = False
+        usage, model = None, selected_model(provider, output_schema)
         try:
             async with AsyncOpenAI(api_key=api_key(provider) or "", base_url=base_url(provider),
                                    timeout=timeout_s, max_retries=0) as client:
                 response = await client.chat.completions.create(**_completions_kwargs(
-                    provider, messages, stream=True, temperature=temperature, max_tokens=max_tokens))
+                    provider, messages, stream=True, temperature=temperature, max_tokens=max_tokens, output_schema=output_schema))
                 async with response:
                     async for chunk in response:
+                        model = getattr(chunk, 'model', None) or model
+                        usage = getattr(chunk, 'usage', None) or usage
                         if not chunk.choices:
                             continue
                         choice = chunk.choices[0]
@@ -545,10 +739,12 @@ async def astream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
                             yield choice.delta.content
             if not saw_stop:
                 logger.warning('%s stream accepted without finish metadata: completion unverified (legacy compatibility)', provider)
+            record_provider_usage(provider, model, usage)
             return
         except Exception as exc:
-            if got_any or attempt == _retries():
+            await asyncio.to_thread(circuit_failure, provider, exc)
+            delay = _retry_delay(exc, backoff)
+            if got_any or attempt == _retries() or delay is None:
                 raise LLMError(f'{provider} stream failed ({_safe_err_text(exc)})') from exc
-            if backoff <= STREAM_RETRY_MAX_BACKOFF:
-                await asyncio.sleep(backoff)
+            await asyncio.sleep(delay)
             backoff *= 2

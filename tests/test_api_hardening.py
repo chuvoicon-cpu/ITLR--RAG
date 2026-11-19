@@ -201,3 +201,25 @@ def test_ollama_prewarm_closes_http_response(monkeypatch, read_fails):
     monkeypatch.setattr(server, '_log', lambda message: None)
     server._prewarm_ollama()
     assert closed == [True]
+
+
+def test_ollama_prewarm_skips_when_cloud_uses_secret_file(monkeypatch, tmp_path):
+    import threading
+
+    from itlr.api import server
+
+    secret = tmp_path / "provider-key"
+    secret.write_text("fixture-key", encoding="utf-8")
+    monkeypatch.delenv("LLM_PROVIDER", raising=False)
+    monkeypatch.delenv("DEEPSEEK_API_KEY", raising=False)
+    monkeypatch.delenv("DEEPSEEK_API_KEY_FILE", raising=False)
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.setenv("OPENAI_API_KEY_FILE", str(secret))
+    monkeypatch.setenv("USE_OLLAMA", "1")
+
+    def unexpected_prewarm(*args, **kwargs):
+        pytest.fail("Cloud selected from secret file must skip local prewarm")
+
+    monkeypatch.setattr(threading, "Thread", unexpected_prewarm)
+    server._prewarm_ollama()
+    assert server._provider_label() == "openai"

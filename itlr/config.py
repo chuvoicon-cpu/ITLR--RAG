@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parent.parent
 _OVERRIDE_ARTIFACTS = os.environ.get("ITLR_ARTIFACTS_DIR")
 ARTIFACTS_DIR = (Path(_OVERRIDE_ARTIFACTS) if _OVERRIDE_ARTIFACTS
                  else ROOT / "var" / "artifacts")
-DATA_DIR = ROOT / "var" / "data"
+DATA_DIR = Path(os.environ.get("ITLR_DATA_DIR", ROOT / "var" / "data"))
 
 ITEMS_CSV = Path(os.environ.get("ITLR_ITEMS_CSV", DATA_DIR / "it_learning_items.csv"))
 INTERACTIONS_CSV = Path(os.environ.get("ITLR_INTERACTIONS_CSV", DATA_DIR / "interactions.csv"))

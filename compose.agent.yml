@@ -1,0 +1,116 @@
+# Overlay for an isolated local/staging project. PostgreSQL and Web come from compose.local.yml.
+# Qdrant and Redis are private to the Compose network.
+services:
+  ollama:
+    profiles: ["ollama"]
+
+  qdrant:
+    image: qdrant/qdrant:v1.18.0
+    networks: [agent_backend]
+    environment:
+      QDRANT__SERVICE__API_KEY: ${ITLR_QDRANT_WRITE_KEY:?set a Qdrant writer key}
+      QDRANT__SERVICE__READ_ONLY_API_KEY: ${ITLR_QDRANT_API_KEY:?set a separate Qdrant reader key}
+      QDRANT__TELEMETRY_DISABLED: "true"
+    volumes:
+      - qdrant_data:/qdrant/storage
+      - qdrant_snapshots:/qdrant/snapshots
+
+  qdrant-indexer:
+    profiles: ["indexer"]
+    image: ${COMPOSE_PROJECT_NAME:-itlr-local}-api
+    pull_policy: never
+    networks: [agent_backend]
+    environment:
+      ITLR_QDRANT_URL: http://qdrant:6333
+      ITLR_QDRANT_WRITE_KEY: ${ITLR_QDRANT_WRITE_KEY:?set a Qdrant writer key}
+      ITLR_QDRANT_API_KEY: ${ITLR_QDRANT_API_KEY:?set a separate Qdrant reader key}
+      ITLR_QDRANT_NAMESPACE: ${ITLR_QDRANT_NAMESPACE:-itlr_chunks}
+      ITLR_QDRANT_ALIAS: ${ITLR_QDRANT_ALIAS:-}
+      USE_OLLAMA: "0"
+    volumes:
+      - ./var:/app/var:ro
+    entrypoint: ["python", "-m", "itlr.retrieval.qdrant_artifacts"]
+    command: ["stage"]
+    depends_on:
+      qdrant:
+        condition: service_started
+
+  redis:
+    image: redis:8.8-alpine
+    networks: [agent_backend]
+    command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "256mb", "--maxmemory-policy", "noeviction"]
+
+  agent-worker:
+    profiles: ["worker"]
+    image: ${COMPOSE_PROJECT_NAME:-itlr-local}-api
+    pull_policy: never
+    init: true
+    restart: on-failure
+    environment:
+      ITLR_JOB_DATABASE_URL: ${ITLR_JOB_DATABASE_URL:-}
+      ITLR_JOB_STAGING_ROOT: /app/var/worker
+      ITLR_JOB_INGEST_SOURCES: ${ITLR_JOB_INGEST_SOURCES:-}
+      HF_HOME: /app/var/hf
+      HF_HUB_OFFLINE: "1"
+      DISABLE_RERANKER: "1"
+      OMP_NUM_THREADS: ${OMP_NUM_THREADS:-2}
+    volumes:
+      - agent_worker_data:/app/var/worker
+      - ./var/hf:/app/var/hf:ro
+    entrypoint: ["python", "-m", "itlr.agent_jobs"]
+    command: ["worker"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  web:
+    environment:
+      ITLR_CHAT_PRINCIPAL_KEY: ${ITLR_CHAT_PRINCIPAL_KEY:-}
+
+  api:
+    networks: [default, agent_backend]
+    environment:
+      ITLR_VECTOR_BACKEND: ${ITLR_VECTOR_BACKEND:-faiss}
+      ITLR_QDRANT_URL: http://qdrant:6333
+      ITLR_QDRANT_API_KEY: ${ITLR_QDRANT_API_KEY:?set a separate Qdrant reader key}
+      ITLR_QDRANT_NAMESPACE: ${ITLR_QDRANT_NAMESPACE:-itlr_chunks}
+      ITLR_QDRANT_ALIAS: ${ITLR_QDRANT_ALIAS:-}
+      ITLR_REDIS_URL: redis://redis:6379/0
+      USE_OLLAMA: ${USE_OLLAMA:-0}
+      ITLR_REDIS_RATE_LIMIT: "1"
+      ITLR_CHAT_PRINCIPAL_KEY: ${ITLR_CHAT_PRINCIPAL_KEY:-}
+      ITLR_REQUIRE_WEB_CHAT: ${ITLR_REQUIRE_WEB_CHAT:-0}
+      ITLR_CHAT_USER_PER_MIN: ${ITLR_CHAT_USER_PER_MIN:-12}
+      ITLR_CHAT_CLUSTER_CONCURRENCY: ${ITLR_CHAT_CLUSTER_CONCURRENCY:-4}
+      ITLR_CHAT_CONCURRENCY: ${ITLR_CHAT_CONCURRENCY:-4}
+      ITLR_CACHE_NAMESPACE: ${ITLR_CACHE_NAMESPACE:-itlr-agent-staging}
+      ITLR_CACHE_EPOCH: ${ITLR_CACHE_EPOCH:-1}
+      LLM_PROVIDER: ${LLM_PROVIDER:-none}
+      ITLR_REQUIRE_CLOUD_AUTHORIZATION: "1"
+      ITLR_CLOUD_AUTHORIZED: ${ITLR_CLOUD_AUTHORIZED:-0}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      DEEPSEEK_MODEL: ${DEEPSEEK_MODEL:-deepseek-flash}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      ITLR_LLM_PRICE_JSON: ${ITLR_LLM_PRICE_JSON:-}
+      ITLR_LLM_CIRCUIT_THRESHOLD: ${ITLR_LLM_CIRCUIT_THRESHOLD:-3}
+      ITLR_LLM_CIRCUIT_SECONDS: ${ITLR_LLM_CIRCUIT_SECONDS:-30}
+      ITLR_DEEPSEEK_EVIDENCE_MODEL: ${ITLR_DEEPSEEK_EVIDENCE_MODEL:-}
+      ITLR_OPENAI_EVIDENCE_MODEL: ${ITLR_OPENAI_EVIDENCE_MODEL:-}
+      ITLR_OLLAMA_EVIDENCE_MODEL: ${ITLR_OLLAMA_EVIDENCE_MODEL:-}
+      ITLR_LLM_MAX_RPM: ${ITLR_LLM_MAX_RPM:-30}
+      ITLR_LLM_MAX_TPM: ${ITLR_LLM_MAX_TPM:-0}
+    depends_on: !override
+      qdrant:
+        condition: service_started
+      redis:
+        condition: service_started
+
+volumes:
+  agent_worker_data:
+  qdrant_data:
+  qdrant_snapshots:
+
+networks:
+  agent_backend:
+    internal: true

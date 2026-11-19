@@ -2,13 +2,18 @@ import { pool, query } from "../db/pool";
 
 export async function ownedChatHistory(userId: number, conversationId?: number) {
   if (!conversationId) return [];
-  const own = await query("SELECT 1 FROM conversations WHERE id = $1 AND user_id = $2", [conversationId, userId]);
-  if (!own.length) return null;
-  const rows = await query<{ role: string; content: string }>(
-    "SELECT role, content FROM messages WHERE conversation_id = $1 ORDER BY id DESC LIMIT 20", [conversationId],
+  const rows = await query<{ role: string | null; content: string | null }>(
+    `SELECT history.role, history.content
+     FROM conversations c LEFT JOIN LATERAL (
+       SELECT m.id, m.role, m.content FROM messages m WHERE m.conversation_id = c.id
+       ORDER BY m.id DESC LIMIT 20
+     ) history ON true
+     WHERE c.id = $1 AND c.user_id = $2 ORDER BY history.id`, [conversationId, userId],
   );
-  return rows.reverse()
-    .filter(row => (row.role === "user" || row.role === "assistant") && row.content.length > 0)
+  if (!rows.length) return null;
+  return rows
+    .filter((row): row is { role: string; content: string } =>
+      (row.role === "user" || row.role === "assistant") && !!row.content)
     // FastAPI caps each history message at 4000 chars; keep the DB text intact.
     .map(row => ({ ...row, content: row.content.slice(0, 4000).replace(/[\uD800-\uDBFF]$/, "") }));
 }

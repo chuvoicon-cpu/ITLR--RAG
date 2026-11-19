@@ -25,6 +25,15 @@ it("extracts a valid PDF through the real worker and parser", async () => {
 it("fails closed for disabled Office formats", async () => {
   await expect(extractText(Buffer.from("office"), ".docx")).rejects.toThrow("Unsupported");
 });
+it("rejects a third extraction while both worker slots are occupied", async () => {
+  const invalidPdf = Buffer.from("%PDF-1.4\ninvalid\n%%EOF");
+  const active = Promise.allSettled([extractText(invalidPdf, ".pdf"), extractText(invalidPdf, ".pdf")]);
+  try {
+    await expect(extractText(invalidPdf, ".pdf")).rejects.toThrow("Document extraction is busy");
+  } finally {
+    await active;
+  }
+});
 it("rejects corrupt PDFs in the parser worker and frees capacity", async () => {
   for (let n = 0; n < 3; n++) {
     await expect(extractText(Buffer.from("%PDF-1.4\ninvalid\n%%EOF"), ".pdf")).rejects.toThrow();

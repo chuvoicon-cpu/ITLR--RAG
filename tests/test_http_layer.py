@@ -4,6 +4,7 @@ Không gọi mạng thật trong unit test — mỗi phần nền tảng đượ
 """
 
 import urllib.robotparser
+from types import SimpleNamespace
 
 import pytest
 
@@ -86,12 +87,14 @@ class TestRateLimiter:
         rl.wait("other.com")
         assert sleeps == []
 
-    def test_replace_by_larger_crawl_delay(self):
+    def test_replace_by_larger_crawl_delay(self, monkeypatch):
+        ticks = iter((100.0, 100.0, 100.25, 105.0))
+        monkeypatch.setattr("itlr.collect.http.time", SimpleNamespace(monotonic=lambda: next(ticks)))
         sleeps = []
         rl = RateLimiter(min_interval=1.0, jitter=0.0, sleeper=sleeps.append)
         rl.wait("h", extra_delay=0)
         rl.wait("h", extra_delay=5.0)
-        assert sleeps[0] == pytest.approx(5.0)
+        assert sleeps == [4.75]
 
 
 class TestFetcher:
