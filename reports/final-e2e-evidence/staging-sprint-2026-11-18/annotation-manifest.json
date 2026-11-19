@@ -1,0 +1,7 @@
+{
+  "source": "reports/final-e2e-evidence/release-2026-10-31/frozen-none.json",
+  "cases": 20,
+  "historical_captured_answers_sha256": "5f1e889b55e9473656f0bff15c0d78e486c390731576ced336ce7033e087e3cf",
+  "human_reviewers": 0,
+  "human_faithfulness": null
+}

@@ -1,0 +1,2 @@
+Qdrant: parallel stage, replay, exact ID, filter, revision guard, alias rollback, snapshot restore, update/delete PASS
+Redis: concurrent cache fill, revision isolation, atomic rate quota PASS

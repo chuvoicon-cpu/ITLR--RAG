@@ -30,7 +30,7 @@ Quyết định liên quan: [ADR-010](decisions/ADR-010-shared-retrieval-and-ato
    subprocess; ghi `MANIFEST.json`.
 5. Activate: pointer `CURRENT.json` nguyên tử; engine chỉ đổi sau `/admin/reload` thành công.
 
-Build lệnh: [DEPLOY §Chuẩn bị dữ liệu và index](../deploy/DEPLOY.md#chuẩn-bị-dữ-liệu-và-index).
+Lệnh build: [Build, probe và activate](../deploy/DEPLOY.md#build-probe-activate).
 
 ## 3. Online: đường search
 

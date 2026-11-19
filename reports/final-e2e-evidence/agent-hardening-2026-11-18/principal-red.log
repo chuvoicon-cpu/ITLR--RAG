@@ -1,0 +1,37 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_________ test_chat_quota_uses_verified_user_and_binds_path_and_expiry _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7711d8ec2bd0>
+
+    def test_chat_quota_uses_verified_user_and_binds_path_and_expiry(monkeypatch):
+        monkeypatch.setenv('ITLR_CHAT_PRINCIPAL_KEY', SECRET)
+        monkeypatch.setenv('ITLR_REQUIRE_WEB_CHAT', '1')
+        monkeypatch.setenv('ITLR_REDIS_RATE_LIMIT', '1')
+        limits = []
+        monkeypatch.setattr(ratelimit, '_distributed_enforce', lambda *args: limits.append(args))
+>       ratelimit.enforce_chat(request('/api/chat', signed(uid=11)), 30)
+        ^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'itlr.api.ratelimit' has no attribute 'enforce_chat'
+
+tests/test_web_chat_principal.py:34: AttributeError
+_________________ test_distributed_slot_denial_is_fail_closed __________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7711d8849730>
+
+    def test_distributed_slot_denial_is_fail_closed(monkeypatch):
+        class Redis:
+            def eval(self, *_):
+                return 0
+    
+        monkeypatch.setenv('ITLR_CHAT_CLUSTER_CONCURRENCY', '2')
+        monkeypatch.setattr(ratelimit, 'configured_redis', Redis)
+>       with pytest.raises(HTTPException) as exc:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE HTTPException
+
+tests/test_web_chat_principal.py:51: Failed
+=========================== short test summary info ============================
+FAILED tests/test_web_chat_principal.py::test_chat_quota_uses_verified_user_and_binds_path_and_expiry
+FAILED tests/test_web_chat_principal.py::test_distributed_slot_denial_is_fail_closed
+2 failed in 0.66s

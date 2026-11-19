@@ -1,0 +1,2 @@
+Persistence after Qdrant, Redis, API recreation: users|courses|saved_plans = 3|118|2
+PostgreSQL pg_dump/pg_restore counts match: 3|118|2

@@ -1,0 +1,25 @@
+{
+  "duration_seconds": 120.00010314000247,
+  "target_aggregate_rps": 1,
+  "workload": "exact cache lookup Docker, alternating replicas",
+  "replicas": [
+    {
+      "requests": 60,
+      "non_200": 0,
+      "latency_ms": {
+        "p50": 6.730902499839431,
+        "p95": 16.041047652834095,
+        "p99": 17.002601403219153
+      }
+    },
+    {
+      "requests": 60,
+      "non_200": 0,
+      "latency_ms": {
+        "p50": 7.101324503310025,
+        "p95": 14.806428900192257,
+        "p99": 17.461124729234136
+      }
+    }
+  ]
+}

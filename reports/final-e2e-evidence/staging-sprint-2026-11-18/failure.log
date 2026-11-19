@@ -1,0 +1,11 @@
+38094 /api/search HTTP 503 expected 503
+38095 /api/search HTTP 503 expected 503
+38094 /api/search HTTP 200 expected 200
+38095 /api/search HTTP 200 expected 200
+38094 /live HTTP 200 expected 200
+38094 /health HTTP 503 expected 503
+38095 /live HTTP 200 expected 200
+38095 /health HTTP 503 expected 503
+38094 /health HTTP 200 expected 200
+38095 /health HTTP 200 expected 200
+Two API replicas recovered after dependencies resumed PASS

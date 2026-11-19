@@ -1,0 +1,26 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_______________ test_native_gate_refuses_sparse_only_candidates ________________
+
+    def test_native_gate_refuses_sparse_only_candidates():
+        store = Store({0: .8399})
+        index = NativeHybrid(store, [{'item_id': 1, 'chunk_idx': 0, 'chunk_text': 'password'}])
+>       assert index.search('password', np.array([1, 0]), min_relevance=.84, top_k=5,
+                            unique_items=True, dense_gate=True) == []
+E       TypeError: NativeHybrid.search() got an unexpected keyword argument 'dense_gate'
+
+tests/test_native_dense_gate.py:29: TypeError
+________ test_native_applies_dense_eligibility_before_sparse_truncation ________
+
+    def test_native_applies_dense_eligibility_before_sparse_truncation():
+        store = Store({0: .8399, 1: .84})
+        rows = [{'item_id': i, 'chunk_idx': 0, 'chunk_text': 'password database'} for i in (1, 2)]
+>       hits = NativeHybrid(store, rows).search('password', np.array([1, 0]), min_relevance=.84,
+                                              top_k=5, unique_items=True, dense_gate=True)
+E       TypeError: NativeHybrid.search() got an unexpected keyword argument 'dense_gate'
+
+tests/test_native_dense_gate.py:37: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_native_dense_gate.py::test_native_gate_refuses_sparse_only_candidates
+FAILED tests/test_native_dense_gate.py::test_native_applies_dense_eligibility_before_sparse_truncation
+2 failed in 2.96s

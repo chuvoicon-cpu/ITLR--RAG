@@ -1,0 +1,32 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /home/trantien/ITLR--RAG/web
+
+ ❯ src/routes/handoff.test.ts (1 test | 1 failed) 51ms
+     × uses only the authenticated owner and requires direct confirmation 46ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/routes/handoff.test.ts > human handoff > uses only the authenticated owner and requires direct confirmation
+AssertionError: expected "vi.fn()" to be called with arguments: [ StringMatching{…}, …(1) ]
+
+Number of calls: 0
+
+ ❯ src/routes/handoff.test.ts:33:19
+     31|     await handleAgentTool({ user: { id: 17 }, body: { tool: "handoff_t…
+     32|       created as unknown as Response);
+     33|     expect(query).toHaveBeenCalledWith(expect.stringMatching(/INSERT I…
+       |                   ^
+     34|       expect.any(String), 17, args.idempotency_key, args.detail, expec…
+     35|     ]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  23:01:56
+   Duration  1.22s (transform 238ms, setup 0ms, import 670ms, tests 51ms, environment 0ms)
+

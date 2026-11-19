@@ -1,0 +1,57 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /home/trantien/ITLR--RAG/web
+
+ ❯ src/services/chat-history.test.ts (9 tests | 1 failed) 44ms
+   × queries owner and message history in one PostgreSQL snapshot 16ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/services/chat-history.test.ts > queries owner and message history in one PostgreSQL snapshot
+AssertionError: expected "vi.fn()" to be called once with arguments: [ StringContaining{…}, [ 9, 2 ] ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   StringContaining "LEFT JOIN LATERAL",
++   "SELECT 1 FROM conversations WHERE id = $1 AND user_id = $2",
+    [
+      9,
+      2,
+    ],
+  ]
+
+  2nd vi.fn() call:
+
+  [
+-   StringContaining "LEFT JOIN LATERAL",
++   "SELECT role, content FROM messages WHERE conversation_id = $1 ORDER BY id DESC LIMIT 20",
+    [
+      9,
+-     2,
+    ],
+  ]
+
+
+Number of calls: 2
+
+ ❯ src/services/chat-history.test.ts:58:20
+     56|   db.query.mockResolvedValue([{ role: "user", content: "question" }]);
+     57|   expect(await ownedChatHistory(2, 9)).toEqual([{ role: "user", conten…
+     58|   expect(db.query).toHaveBeenCalledExactlyOnceWith(expect.stringContai…
+       |                    ^
+     59| });
+     60|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  23:37:24
+   Duration  656ms (transform 85ms, setup 0ms, import 123ms, tests 44ms, environment 0ms)
+

@@ -1,0 +1,259 @@
+{
+  "fixture_sha256": "2a3a98e2d207b7c4932ced6ec87b3d7db9668c8b543730545e9a76d10abe6dd1",
+  "manifest": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+  "min_relevance": 0.84,
+  "human_reviewed": null,
+  "exact_overlap_with_tuning": 0,
+  "cases": {
+    "blind-positive-01": {
+      "kind": "positive",
+      "language": "en",
+      "expected": [
+        5002
+      ],
+      "phase_a": [
+        "5002:4"
+      ],
+      "native": [
+        "5002:4"
+      ]
+    },
+    "blind-positive-02": {
+      "kind": "positive",
+      "language": "en",
+      "expected": [
+        5013
+      ],
+      "phase_a": [
+        "5013:1",
+        "5021:6",
+        "5004:6",
+        "5014:0"
+      ],
+      "native": [
+        "5013:1",
+        "5021:6",
+        "5014:0",
+        "5004:6"
+      ]
+    },
+    "blind-positive-03": {
+      "kind": "positive",
+      "language": "en",
+      "expected": [
+        5029
+      ],
+      "phase_a": [
+        "5029:2",
+        "5024:8",
+        "5031:7",
+        "5030:14"
+      ],
+      "native": [
+        "5029:2",
+        "5024:8",
+        "5031:15",
+        "5030:14"
+      ]
+    },
+    "blind-positive-04": {
+      "kind": "positive",
+      "language": "en",
+      "expected": [
+        5047
+      ],
+      "phase_a": [
+        "5047:1"
+      ],
+      "native": [
+        "5047:1"
+      ]
+    },
+    "blind-positive-05": {
+      "kind": "positive",
+      "language": "en",
+      "expected": [
+        5052
+      ],
+      "phase_a": [
+        "5052:0",
+        "5049:1"
+      ],
+      "native": [
+        "5052:0",
+        "5049:1"
+      ]
+    },
+    "blind-positive-06": {
+      "kind": "positive",
+      "language": "en",
+      "expected": [
+        5064
+      ],
+      "phase_a": [
+        "5064:0",
+        "5070:13"
+      ],
+      "native": [
+        "5064:0",
+        "5070:13"
+      ]
+    },
+    "blind-positive-07": {
+      "kind": "positive",
+      "language": "vi",
+      "expected": [
+        5066
+      ],
+      "phase_a": [],
+      "native": []
+    },
+    "blind-positive-08": {
+      "kind": "positive",
+      "language": "vi",
+      "expected": [
+        5072
+      ],
+      "phase_a": [
+        "5072:1"
+      ],
+      "native": [
+        "5072:1"
+      ]
+    },
+    "blind-positive-09": {
+      "kind": "positive",
+      "language": "vi",
+      "expected": [
+        5077
+      ],
+      "phase_a": [
+        "5077:11"
+      ],
+      "native": [
+        "5077:12"
+      ]
+    },
+    "blind-positive-10": {
+      "kind": "positive",
+      "language": "vi",
+      "expected": [
+        5080
+      ],
+      "phase_a": [
+        "5080:2"
+      ],
+      "native": [
+        "5080:7"
+      ]
+    },
+    "blind-positive-11": {
+      "kind": "positive",
+      "language": "vi",
+      "expected": [
+        5094
+      ],
+      "phase_a": [],
+      "native": []
+    },
+    "blind-positive-12": {
+      "kind": "positive",
+      "language": "vi",
+      "expected": [
+        5106
+      ],
+      "phase_a": [
+        "5106:3"
+      ],
+      "native": [
+        "5106:3"
+      ]
+    },
+    "blind-negative-01": {
+      "kind": "negative",
+      "language": "en",
+      "expected": [],
+      "phase_a": [],
+      "native": []
+    },
+    "blind-negative-02": {
+      "kind": "negative",
+      "language": "vi",
+      "expected": [],
+      "phase_a": [],
+      "native": []
+    },
+    "blind-negative-03": {
+      "kind": "negative",
+      "language": "en",
+      "expected": [],
+      "phase_a": [],
+      "native": []
+    },
+    "blind-negative-04": {
+      "kind": "negative",
+      "language": "vi",
+      "expected": [],
+      "phase_a": [],
+      "native": []
+    },
+    "blind-negative-05": {
+      "kind": "negative",
+      "language": "en",
+      "expected": [],
+      "phase_a": [],
+      "native": []
+    },
+    "blind-negative-06": {
+      "kind": "negative",
+      "language": "vi",
+      "expected": [],
+      "phase_a": [],
+      "native": []
+    },
+    "blind-negative-07": {
+      "kind": "negative",
+      "language": "en",
+      "expected": [],
+      "phase_a": [],
+      "native": []
+    },
+    "blind-negative-08": {
+      "kind": "negative",
+      "language": "vi",
+      "expected": [],
+      "phase_a": [],
+      "native": []
+    }
+  },
+  "phase_a": {
+    "recall@5": 0.8333333333333334,
+    "mrr@5": 0.8333333333333334,
+    "ndcg@5": 0.8333333333333334,
+    "negative_empty_count": 8,
+    "negative_count": 8,
+    "latency": {
+      "p50_ms": 8.18894499752787,
+      "p95_ms": 13.064643595134868,
+      "p99_ms": 44.57820472191082,
+      "rps": 96.44868096240243,
+      "peak_active_limit": 1,
+      "errors": 0
+    }
+  },
+  "native": {
+    "recall@5": 0.8333333333333334,
+    "mrr@5": 0.8333333333333334,
+    "ndcg@5": 0.8333333333333334,
+    "negative_empty_count": 8,
+    "negative_count": 8,
+    "latency": {
+      "p50_ms": 21.954205501970137,
+      "p95_ms": 33.02693530313269,
+      "p99_ms": 94.03302146303749,
+      "rps": 38.717752818442975,
+      "peak_active_limit": 1,
+      "errors": 0
+    }
+  }
+}

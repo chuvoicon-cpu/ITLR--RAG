@@ -1,0 +1,11 @@
+CPU(s):                                  8
+Model name:                              Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz
+/itlr-agent-qdrant-check NanoCpus=0 MemoryBytes=0
+/itlr-agent-redis-check NanoCpus=0 MemoryBytes=0
+/itlr-agent-check-postgres-1 NanoCpus=0 MemoryBytes=0
+/itlr-hardening-ollama NanoCpus=4000000000 MemoryBytes=0
+
+Post-run resource snapshot (RSS KiB, not peak):
+uvicorn         1401344
+node            100584
+python          1050116

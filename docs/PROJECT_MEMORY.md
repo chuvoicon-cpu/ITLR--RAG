@@ -1,8 +1,69 @@
 # ITLR–RAG — Bộ nhớ kỹ thuật hiện hành
 
-Cập nhật: 2026-11-02. Thứ tự ưu tiên: yêu cầu phiên hiện tại → AGENTS/CONSTRAINTS →
+Cập nhật: 2026-11-19. Thứ tự ưu tiên: yêu cầu phiên hiện tại → AGENTS/CONSTRAINTS →
 code và bằng chứng chạy mới → nhật ký lịch sử. Kế hoạch cũ không cấp quyền commit,
 publish, migration hoặc gọi provider trả phí.
+
+## 2026-11-19 · Product repository cleanup
+
+- README Anh/Việt tập trung onboarding. Quy trình Compose, monitoring và phục hồi
+  nằm trong runbook. Báo cáo tổng hợp hiện hành liên kết các bộ bằng chứng lịch sử.
+- PDF worker giữ parser, timeout, giới hạn bộ nhớ và hai slot hiện có. Test mới ghim
+  giới hạn concurrency. Vitest config dùng ESM, và hai dependency Python gián tiếp
+  được bỏ khỏi danh sách khai báo trực tiếp.
+- Holdout thật giữ 8/8 negative rỗng, 83,33% cho ba metric và thứ tự item. FAISS vẫn
+  là mặc định. [Kết quả và release gates](../reports/REPOSITORY_CLEANUP.md).
+
+## 2026-11-19 · Repository cleanup
+
+- Provider configuration has one resolver used by API prewarm, metrics, and generation.
+  It detects configured secret files without reading them on the metrics path.
+- Requirements and package extras have a parity regression. Removed unused Nodemon
+  config and destructive Make clean target. Existing data and evidence are retained.
+- Live Compose with disposable PostgreSQL/Qdrant/Redis verified agent writes, replay, isolation,
+  role-gated handoff, and template SSE. Frozen quality metrics and item ranks are unchanged.
+- 567 Python and 177 Web PASS. Two replicas passed shared quotas, cached soak and outage
+  recovery. Fresh Ollama CPU p95 at concurrency 4 was 90.96 s, 3/4 accepted. STAGING HOLD
+  persists for tenant isolation, independent human review, and generation p95.
+  [Cleanup release gates](../reports/cleanup/RELEASE_READINESS.md).
+
+## 2026-11-18 · Staging readiness
+
+- Baseline 559 Python và 176 Web PASS. Final 564 Python và 177 Web PASS.
+  Web line coverage 55,29%.
+- Một data scope. Tenant selector bị từ chối ở biên. Chat owner và history đọc chung
+  snapshot PostgreSQL. Gate cho tenant membership vẫn BLOCKED.
+- Native gated giữ Recall@5 83,33% và 8/8 negative rỗng trên frozen holdout. Giữ FAISS
+  mặc định và Qdrant opt-in. Hai replica single-host qua quota/cache, SSE và outage.
+- Ollama CPU-only concurrency 4 p95 91,50 giây, 3/4 accepted. Paid cloud chưa chạy.
+  Human review có 20 ca chưa chấm. Staging HOLD.
+  [Cổng và bằng chứng](../reports/STAGING_READINESS.md).
+
+## 2026-11-18 · Agent hardening
+
+- Baseline checkpoint chạy lại 548 Python và 168 Web PASS. Final 559 Python, 176 Web;
+  Web lines 55,43%.
+- Native dense eligibility đem lại 8/8 negative rỗng, Recall@5 bằng Phase A. Human label
+  còn thiếu nên chỉ chạy evaluator. Native serving chưa bật.
+- Handoff queue có ghi audit, Web upstream ký principal cho quota riêng từng user,
+  Redis dùng chung giới hạn concurrency, gateway có breaker. Job worker chỉ build staging.
+- Qwen2.5:3b CPU thật qua Web SSE 7/7 accepted. Ở concurrency 4 p95 khoảng 134s, nên
+  production vẫn NO-GO. [Bằng chứng](../reports/AGENT_HARDENING_2026-11-18.md).
+
+## 2026-11-18 · Agent platform
+
+- Baseline HEAD `ce53b14`: 534 Python, 166 Web PASS. Workspace ban đầu sạch.
+- Dùng E5-base, 118 item curated/1.576 chunks. Qdrant phase A giữ 45/45 thứ hạng chunk
+  và 8/8 negative rỗng. Phase B cải thiện recall nhưng 4/8 negative có kết quả, chỉ ở evaluator.
+- Alias và artifact pointer phải khớp fingerprint ở load/reload. Engine pin physical
+  collection khi phục vụ. Giữ reader/writer key riêng và FAISS rollback.
+- Web sở hữu user identity/CSRF, ghi plan với transaction và idempotency theo user.
+  Chatbot chỉ gọi công cụ tri thức đọc. Handoff chưa có workflow tiếp nhận.
+- Redis cache giới hạn public glossary, quota fail closed khi Redis lỗi. Provider cache
+  metrics chỉ lấy từ response thật. Paid provider và human faithfulness chưa kiểm.
+- Sau khi xuất catalog thử, khôi phục snapshot tracked về đúng bytes của HEAD vì exporter
+  mặc định cũng ghi file snapshot. Build/eval dùng corpus clone cách ly và frozen qrels.
+- Báo cáo kiểm chứng và cổng phát hành: [RELEASE_READINESS](../reports/RELEASE_READINESS.md).
 
 ## Chu kỳ mới nhất
 

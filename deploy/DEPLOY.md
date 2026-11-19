@@ -8,8 +8,8 @@ Giới hạn hiện hành: một worker/replica mỗi service, local filesystem,
 Restart container **không** tự migrate/seed/activate.
 
 **Docker full stack local** (Web + API + PostgreSQL + Ollama/Qwen): dùng
-[`compose.local.yml`](../compose.local.yml) và hướng dẫn trong
-[README §Docker Compose](../README.md#docker-compose-full-stack). Production TLS: [PRODUCTION](PRODUCTION.md).
+[`compose.local.yml`](../compose.local.yml) và [quy trình dưới đây](#docker-compose-local).
+Production TLS xem [runbook](PRODUCTION.md).
 Root `docker-compose.yml` chỉ còn API + refresh job (legacy), không phải full stack.
 
 ## Thành phần
@@ -175,6 +175,42 @@ npm start         # hoặc npm run dev
 `npm run sync` để đồng bộ catalog về sau. Exporter từ chối đích đã tồn tại để không truncate
 tài liệu cộng đồng; chuẩn bị đích mới rồi merge theo quy trình duyệt.
 
+## Docker Compose local
+
+Cài Docker Engine và Compose v2. Trên Windows 11, dùng WSL2 và đặt checkout trong
+filesystem Linux. Tạo `.env.docker` từ [template](../.env.docker.example), đặt quyền
+`0600` và thay các placeholder. Dùng mật khẩu PostgreSQL dạng hex để đưa vào
+`DATABASE_URL`. Việc đổi giá trị trong file sau lần khởi tạo volume cần đi kèm
+quy trình đổi mật khẩu trong PostgreSQL.
+
+Chuẩn bị artifact đã probe, model cache và `var/data/web_items.csv` theo các mục
+[nạp dữ liệu](#nạp-dữ-liệu) và [build, probe, activate](#build-probe-activate).
+Có thể chạy script chuẩn bị trong image API bằng `dc run --rm --no-deps api python ...`
+sau khi build. Xác nhận database đích là database local trước khi migrate và sync.
+
+```bash
+dc() { docker compose --env-file .env.docker -f compose.local.yml "$@"; }
+dc config --quiet
+dc build
+dc up -d --wait postgres
+dc run --rm --no-deps web node dist/db/migrate.js
+dc run --rm --no-deps web node dist/db/sync-courses.js
+dc up -d
+curl -fsS http://127.0.0.1:8000/health
+curl -fsS http://127.0.0.1:3000/ready
+```
+
+Nếu dùng generation bằng Ollama container, tải model đã cấu hình, mặc định
+`dc exec ollama ollama pull qwen2.5:3b`. Để dùng model đã có trên host, thêm
+`-f compose.host-ollama.yml` vào lệnh Compose và cấu hình Ollama cho container
+truy cập qua `host.docker.internal` trên mạng tin cậy.
+
+Sau khi build và activate artifact mới, export, verify và sync lại catalog, rồi
+reload API theo mục trên. Dùng `dc logs -f --tail=200 web api` để theo dõi và
+`dc stop` để dừng với volume giữ nguyên. Sau khi thay biến môi trường, dùng
+`dc up -d` để Compose áp dụng cấu hình mới.
+[Monitoring và phục hồi](../docs/operations/README.md)
+
 ## Refresh định kỳ
 
 `scripts/refresh_pipeline.py` chạy crawl → build khi có thay đổi → activate sau probe;
@@ -204,3 +240,31 @@ local. Bật timer/cron là hành động vận hành riêng.
 - Không có transaction xuyên artifacts ↔ PostgreSQL ↔ CSV; đổi index cần maintenance window.
 - Docker/HTTPS/backup/Chrome là gate riêng: xem [PRODUCTION](PRODUCTION.md) và
   [certification](../reports/FINAL_E2E_CERTIFICATION.md).
+
+### Credential của LLM staging
+
+`compose.agent.yml` bật kiểm tra authorization của cloud. Cấu hình `LLM_PROVIDER=none`
+hoặc `ollama` cho chạy không tính phí cloud. Chỉ bật provider cloud khi operator đã phê
+duyệt budget và cấu hình `ITLR_CLOUD_AUTHORIZED=1`, `ITLR_LLM_MAX_RPM`,
+`ITLR_LLM_MAX_TPM` dương, Redis chung và quota/concurrency phù hợp. Lập billing budget
+cho project/provider trước khi chạy benchmark.
+
+Endpoint cloud nhận key bằng environment `OPENAI_API_KEY` hoặc `DEEPSEEK_API_KEY`.
+Để dùng secret mount chỉ đọc, dùng override chỉ với provider cần gọi. Ví dụ với OpenAI:
+
+```yaml
+services:
+  api:
+    environment:
+      OPENAI_API_KEY: ""
+      OPENAI_API_KEY_FILE: /run/secrets/staging_provider
+    secrets: [staging_provider]
+secrets:
+  staging_provider:
+    file: ${ITLR_STAGING_PROVIDER_SECRET_FILE:?set a path outside the repository}
+```
+
+Replica dùng cùng Redis và namespace cho quota. Khi dựng gateway cloud có phép, chạy
+cùng workload của `python -m eval.bench_agent_gateway` trên Web staging đã cấu hình.
+Lưu chênh lệch counters provider từ `/metrics/prometheus` ở mỗi replica, hóa đơn/rates,
+và TTFT/latency của run. Chỉ báo cache hit khi provider trả cache-token metadata.

@@ -1,0 +1,2 @@
+Compose e2e: health, correlated search, SSE final/done, CSRF, real course/search, ownership,
+plan preview/approval, two concurrent idempotent saves, cross-user idempotency isolation PASS

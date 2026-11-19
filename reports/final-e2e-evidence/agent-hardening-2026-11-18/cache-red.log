@@ -1,0 +1,43 @@
+..F.                                                                     [100%]
+=================================== FAILURES ===================================
+________ test_healthy_contended_cache_never_duplicates_expensive_loader ________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x77e9bf76cda0>
+
+    def test_healthy_contended_cache_never_duplicates_expensive_loader(monkeypatch):
+        import pytest
+        from itlr.retrieval import cache as module
+    
+        class Busy:
+            def get(self, _):
+                return None
+    
+            def set(self, *args, **kwargs):
+                return None
+    
+        now = [0.]
+        monkeypatch.setattr(module, 'monotonic', lambda: now[0])
+    
+        def advance(seconds):
+            now[0] += seconds
+    
+        monkeypatch.setattr(module, 'sleep', advance)
+        cache = PublicCache(Busy(), 'deployment', 'revision1', 'E5')
+        with pytest.raises(RuntimeError, match='cache fill is busy'):
+>           cache.read('retrieval', ['q'], lambda: pytest.fail('duplicate expensive loader'))
+
+tests/test_cache.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+itlr/retrieval/cache.py:91: in read
+    return load()
+           ^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   cache.read('retrieval', ['q'], lambda: pytest.fail('duplicate expensive loader'))
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: duplicate expensive loader
+
+tests/test_cache.py:52: Failed
+=========================== short test summary info ============================
+FAILED tests/test_cache.py::test_healthy_contended_cache_never_duplicates_expensive_loader
+1 failed, 3 passed in 0.42s

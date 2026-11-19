@@ -1,0 +1,36 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+________ test_caller_cannot_switch_deployment_scope[/api/search-body0] _________
+
+path = '/api/search', body = {'query': 'Docker'}
+
+    @pytest.mark.parametrize('path,body', [('/api/search', {'query': 'Docker'}),
+                                            ('/api/chat', {'message': 'Xin chào'})])
+    def test_caller_cannot_switch_deployment_scope(path, body):
+        client = TestClient(app)
+>       assert client.post(path, json=body, headers={'X-Tenant-ID': 'other'}).status_code == 400
+E       AssertionError: assert 503 == 400
+E        +  where 503 = <Response [503 Service Unavailable]>.status_code
+E        +    where <Response [503 Service Unavailable]> = post('/api/search', json={'query': 'Docker'}, headers={'X-Tenant-ID': 'other'})
+E        +      where post = <starlette.testclient.TestClient object at 0x73679b6b1be0>.post
+
+tests/test_staging_scope.py:11: AssertionError
+_________ test_caller_cannot_switch_deployment_scope[/api/chat-body1] __________
+
+path = '/api/chat', body = {'message': 'Xin chào'}
+
+    @pytest.mark.parametrize('path,body', [('/api/search', {'query': 'Docker'}),
+                                            ('/api/chat', {'message': 'Xin chào'})])
+    def test_caller_cannot_switch_deployment_scope(path, body):
+        client = TestClient(app)
+>       assert client.post(path, json=body, headers={'X-Tenant-ID': 'other'}).status_code == 400
+E       AssertionError: assert 503 == 400
+E        +  where 503 = <Response [503 Service Unavailable]>.status_code
+E        +    where <Response [503 Service Unavailable]> = post('/api/chat', json={'message': 'Xin chào'}, headers={'X-Tenant-ID': 'other'})
+E        +      where post = <starlette.testclient.TestClient object at 0x73679b433cb0>.post
+
+tests/test_staging_scope.py:11: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_staging_scope.py::test_caller_cannot_switch_deployment_scope[/api/search-body0]
+FAILED tests/test_staging_scope.py::test_caller_cannot_switch_deployment_scope[/api/chat-body1]
+2 failed in 4.78s

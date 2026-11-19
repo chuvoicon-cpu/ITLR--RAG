@@ -1,0 +1,4 @@
+PostgreSQL: unique enqueue, 4 parallel claims, expiry/reclaim, stale fencing, backoff and dead letter PASS
+{'kind': 'embed', 'state': 'dead', 'exit_code': 1}
+{'kind': 'embed', 'state': 'dead', 'exit_code': 1}
+{'kind': 'ingest', 'state': 'succeeded', 'exit_code': 0}

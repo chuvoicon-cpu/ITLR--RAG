@@ -1,0 +1,5 @@
+itlr-agent-check-api-1 0.14% 1.186GiB / 14.86GiB
+itlr-agent-check-web-1 0.50% 48.05MiB / 14.86GiB
+itlr-agent-check-qdrant-1 0.13% 40.94MiB / 14.86GiB
+itlr-agent-check-redis-1 0.27% 5.828MiB / 14.86GiB
+itlr-agent-check-postgres-1 0.01% 33.32MiB / 14.86GiB

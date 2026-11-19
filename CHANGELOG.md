@@ -1,5 +1,40 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Changelog
 
+## 2026-11-19 · Repository cleanup and verification
+
+- Share provider routing across FastAPI startup, metrics, and the LLM gateway.
+  Package metadata now includes the API observability dependencies.
+- Retire the unused Nodemon config and the Makefile clean target that deleted evidence.
+  Keep the full Python CI run and remove a redundant rerun of its fixture tests.
+- Publish English and Vietnamese entry points, a documentation index, and an operations
+  runbook. Record fresh frozen retrieval and isolated Compose results.
+  [Cleanup validation](reports/cleanup/FINAL_VALIDATION.md).
+
+## 2026-11-18 · Staging readiness
+
+- Từ chối tenant selector ở Express và FastAPI, đọc lịch sử chat cùng snapshot với kiểm owner.
+- Bắt buộc quyền cloud rõ ràng và quota Redis trong overlay staging, hỗ trợ API key từ secret file.
+- Chạy holdout native và hai API replica, đo Ollama thực tế và xuất phiếu human review.
+  [Cổng staging và bằng chứng](reports/STAGING_READINESS.md).
+
+## 2026-11-18 · Agent hardening
+
+- Ghim dense eligibility cho thí nghiệm native Qdrant, kèm phân tích top-K và score từng negative.
+- Thêm handoff theo quyền admin, ký principal Web cho chat, slot Redis dùng chung, giới hạn
+  cache fill và provider circuit breaker.
+- Thêm ingestion/embedding jobs có PostgreSQL lease, retry và dead-letter. Đo thêm Ollama
+  E2E, outage và backup/restore trong môi trường cách ly.
+- [Kết quả và cổng phát hành](reports/AGENT_HARDENING_2026-11-18.md).
+
+## 2026-11-18 · Agent platform staging
+
+- Thêm Qdrant exact dense opt-in, giữ FAISS và BM25/RRF, promote theo parity của manifest.
+  Native hybrid chạy trong evaluator riêng.
+- Thêm công cụ tri thức validate input/output, request correlation ID và Web endpoint agent
+  dùng principal, CSRF, PostgreSQL audit và idempotency cho lưu kế hoạch đã xác nhận.
+- Thêm Redis public cache, distributed request quotas, provider admission/usage và Docker
+  overlay dành cho kiểm thử staging. Chi tiết: [release readiness](reports/RELEASE_READINESS.md).
+
 ## Review độc lập + regression test cho refactor chatbot — 2026-11-02
 
 - Thêm `tests/test_chatbot_prepare_pipeline.py` (23 test, deterministic, không LLM thật):

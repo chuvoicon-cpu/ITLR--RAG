@@ -4,6 +4,11 @@ Tài liệu này là nguồn chuẩn cho kiến trúc hiện hành. Kết quả 
 [validation](../reports/VALIDATION.md) và [certification](../reports/FINAL_E2E_CERTIFICATION.md);
 khả năng production phải được đánh giá riêng trên staging.
 
+Phần agent thử nghiệm và storage adapter Qdrant được mô tả trong
+[AI agent architecture](architecture/AI_AGENT_ARCHITECTURE.md). Sơ đồ staging hai replica,
+ranh giới phân quyền Web và các cổng nghiệm thu nằm trong
+[Staging readiness](../reports/STAGING_READINESS.md).
+
 ## 1. Thành phần và luồng dữ liệu
 
 ```mermaid

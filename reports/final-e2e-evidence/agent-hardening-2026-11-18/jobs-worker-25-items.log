@@ -1,0 +1,27 @@
+Không tìm thấy catalog legacy /tmp/itlr-job-stage.EGht48/data/it_learning_items.csv — catalog V2 sẽ chỉ gồm dữ liệu crawl.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/trantien/ITLR--RAG/itlr/pipelines/build_model.py", line 166, in <module>
+    main()
+  File "/home/trantien/ITLR--RAG/itlr/pipelines/build_model.py", line 122, in main
+    matrices[field] = vectorizer.fit_transform(corpus)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trantien/ITLR--RAG/.venv/lib/python3.12/site-packages/sklearn/feature_extraction/text.py", line 2110, in fit_transform
+    X = super().fit_transform(raw_documents)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trantien/ITLR--RAG/.venv/lib/python3.12/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trantien/ITLR--RAG/.venv/lib/python3.12/site-packages/sklearn/feature_extraction/text.py", line 1400, in fit_transform
+    X = self._limit_features(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trantien/ITLR--RAG/.venv/lib/python3.12/site-packages/sklearn/feature_extraction/text.py", line 1252, in _limit_features
+    raise ValueError(
+ValueError: After pruning, no terms remain. Try a lower min_df or a higher max_df.
+[OK] Catalog V2: 25 items (crawl thật: 25) → /tmp/itlr-job-stage.EGht48/data/itlr_v2_items.csv
+[1/4] Catalog: /tmp/itlr-job-stage.EGht48/data/itlr_v2_items.csv
+[2/4] Staging: /tmp/itlr-job-stage.EGht48/artifacts/versions/20261118-231101-6cfe02d24960
+--- [retrieval_model] python -m itlr.pipelines.build_model
+[LỖI] retrieval_model rc=1 — staging KHÔNG được activate.
+Job 6 attempt 1 exit 1

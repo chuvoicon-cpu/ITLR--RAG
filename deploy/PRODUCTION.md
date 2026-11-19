@@ -4,6 +4,8 @@ Thiết kế cho **một host Linux** với Caddy → Web → API/PostgreSQL, lo
 worker/replica mỗi service. Không phải thiết kế Cloud Run/multi-host: khóa artifacts, SQLite
 và limiter trong RAM đều giả định một tiến trình.
 
+<a id="isolated-staging-acceptance-drill-not-executed"></a>
+
 ## 1. Trạng thái kiểm chứng
 
 | Hạng mục | Trạng thái |

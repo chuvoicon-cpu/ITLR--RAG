@@ -1,0 +1,48 @@
+FF.                                                                      [100%]
+=================================== FAILURES ===================================
+___________ test_open_circuit_refuses_provider_before_spending_quota ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7b3faa28da30>
+
+    def test_open_circuit_refuses_provider_before_spending_quota(monkeypatch):
+        class Redis:
+            def get(self, key):
+                assert key.endswith(':openai')
+                return b'3'
+    
+        monkeypatch.setenv('ITLR_LLM_CIRCUIT_THRESHOLD', '3')
+        monkeypatch.setattr(provider_budget, 'configured_redis', Redis)
+        monkeypatch.setattr(lc, 'reserve_attempt', lambda *_: pytest.fail('reserved quota on open circuit'))
+        with pytest.raises(lc.LLMError, match='circuit is open'):
+>           lc._reserve_attempt('openai', [], 20)
+
+tests/test_provider_circuit.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+itlr/chatbot/llm_client.py:460: in _reserve_attempt
+    reserve_attempt(provider, messages, max_tokens)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+_ = ('openai', [], 20)
+
+>   monkeypatch.setattr(lc, 'reserve_attempt', lambda *_: pytest.fail('reserved quota on open circuit'))
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: reserved quota on open circuit
+
+tests/test_provider_circuit.py:16: Failed
+__________ test_model_routing_is_task_scoped_and_keeps_legacy_default __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7b3faa28eff0>
+
+    def test_model_routing_is_task_scoped_and_keeps_legacy_default(monkeypatch):
+        monkeypatch.setenv('OPENAI_MODEL', 'legacy')
+        monkeypatch.setenv('ITLR_OPENAI_EVIDENCE_MODEL', 'evidence-model')
+        assert lc._completions_kwargs('openai', [], stream=False, temperature=0, max_tokens=10)['model'] == 'legacy'
+>       assert lc._completions_kwargs('openai', [], stream=False, temperature=0, max_tokens=10,
+                                      output_schema={'type': 'array'})['model'] == 'evidence-model'
+E       TypeError: _completions_kwargs() got an unexpected keyword argument 'output_schema'
+
+tests/test_provider_circuit.py:25: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_provider_circuit.py::test_open_circuit_refuses_provider_before_spending_quota
+FAILED tests/test_provider_circuit.py::test_model_routing_is_task_scoped_and_keeps_legacy_default
+2 failed, 1 passed in 0.40s

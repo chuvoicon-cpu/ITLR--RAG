@@ -1,0 +1,6 @@
+itlr_cache_events_total{layer="response",outcome="miss"} 1.0
+itlr_cache_events_total{layer="response",outcome="hit"} 2.0
+itlr_cache_events_total{layer="embedding",outcome="miss"} 1.0
+itlr_cache_events_total{layer="retrieval",outcome="miss"} 1.0
+itlr_cache_events_total{layer="embedding",outcome="hit"} 1.0
+itlr_cache_events_total{layer="retrieval",outcome="hit"} 1.0

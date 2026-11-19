@@ -1,0 +1,2 @@
+Redis stopped: cache read computes normally, distributed API quota returns 503
+Redis restarted: search recovered (HTTP 200)

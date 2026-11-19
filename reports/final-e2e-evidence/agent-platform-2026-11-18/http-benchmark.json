@@ -1,0 +1,324 @@
+{
+  "health": {
+    "status": "ok",
+    "engine": "ready",
+    "cf": false,
+    "items": 118,
+    "artifacts": {
+      "version": "20261118-222154-05acd7fdb698",
+      "manifest_sha256": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+      "vector_backend": "qdrant",
+      "collection": "itlr_chunks_e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+    }
+  },
+  "search_suite_sha256": "b7760b733697c716373d379ecd685f193f67874a9e0957b7fcc3a5e913be8dfc",
+  "generation_suite_sha256": "2a3a98e2d207b7c4932ced6ec87b3d7db9668c8b543730545e9a76d10abe6dd1",
+  "search": [
+    {
+      "concurrency": 1,
+      "peak_active_requests": 1,
+      "requests": 23,
+      "rps": 7.722687468881909,
+      "status_counts": {
+        "200": 23
+      },
+      "error_rate": 0.0,
+      "timeout_rate": 0.0,
+      "latency_ms": {
+        "p50": 125.57638099679025,
+        "p95": 156.93374140319065,
+        "p99": 161.65501576091629
+      }
+    },
+    {
+      "concurrency": 2,
+      "peak_active_requests": 2,
+      "requests": 23,
+      "rps": 10.773884482674623,
+      "status_counts": {
+        "200": 23
+      },
+      "error_rate": 0.0,
+      "timeout_rate": 0.0,
+      "latency_ms": {
+        "p50": 178.2781179936137,
+        "p95": 229.84676929918348,
+        "p99": 237.04925696336431
+      }
+    },
+    {
+      "concurrency": 4,
+      "peak_active_requests": 4,
+      "requests": 23,
+      "rps": 11.093107474647228,
+      "status_counts": {
+        "200": 23
+      },
+      "error_rate": 0.0,
+      "timeout_rate": 0.0,
+      "latency_ms": {
+        "p50": 361.88438899989706,
+        "p95": 440.70136149966856,
+        "p99": 505.4353981392343
+      }
+    },
+    {
+      "concurrency": 8,
+      "peak_active_requests": 8,
+      "requests": 23,
+      "rps": 11.710217849358886,
+      "status_counts": {
+        "200": 23
+      },
+      "error_rate": 0.0,
+      "timeout_rate": 0.0,
+      "latency_ms": {
+        "p50": 640.3057860006811,
+        "p95": 807.165989801433,
+        "p99": 848.898101261002
+      }
+    }
+  ],
+  "repeated_public_docker_latency_ms": {
+    "p50": 6.009598000673577,
+    "p95": 7.536093003000132,
+    "p99": 7.811277004075237
+  },
+  "chat_template_or_extractive": {
+    "cases": [
+      {
+        "id": "blind-positive-01",
+        "kind": "positive",
+        "language": "en",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": true,
+        "ttft_ms": 296.8046549940482,
+        "duration_ms": 298.4009319989127
+      },
+      {
+        "id": "blind-positive-02",
+        "kind": "positive",
+        "language": "en",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": true,
+        "ttft_ms": 177.30796599789755,
+        "duration_ms": 178.6125950020505
+      },
+      {
+        "id": "blind-positive-03",
+        "kind": "positive",
+        "language": "en",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": true,
+        "ttft_ms": 223.69828500086442,
+        "duration_ms": 224.916889994347
+      },
+      {
+        "id": "blind-positive-04",
+        "kind": "positive",
+        "language": "en",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": true,
+        "ttft_ms": 254.83936399541562,
+        "duration_ms": 255.93045199639164
+      },
+      {
+        "id": "blind-positive-05",
+        "kind": "positive",
+        "language": "en",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": true,
+        "ttft_ms": 194.8466300018481,
+        "duration_ms": 196.0159520021989
+      },
+      {
+        "id": "blind-positive-06",
+        "kind": "positive",
+        "language": "en",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": true,
+        "ttft_ms": 191.96287699742243,
+        "duration_ms": 193.0143110002973
+      },
+      {
+        "id": "blind-positive-07",
+        "kind": "positive",
+        "language": "vi",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": true,
+        "ttft_ms": 225.39388600125676,
+        "duration_ms": 226.4892359962687
+      },
+      {
+        "id": "blind-positive-08",
+        "kind": "positive",
+        "language": "vi",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": true,
+        "ttft_ms": 223.85924799891654,
+        "duration_ms": 224.57113999553258
+      },
+      {
+        "id": "blind-positive-09",
+        "kind": "positive",
+        "language": "vi",
+        "mode": "template",
+        "citation_status": "not_applicable",
+        "refused": false,
+        "judged_source_found": true,
+        "ttft_ms": 534.9430260030203,
+        "duration_ms": 535.6734410015633
+      },
+      {
+        "id": "blind-positive-10",
+        "kind": "positive",
+        "language": "vi",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": true,
+        "ttft_ms": 248.63268899935065,
+        "duration_ms": 249.73702999704983
+      },
+      {
+        "id": "blind-positive-11",
+        "kind": "positive",
+        "language": "vi",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": true,
+        "ttft_ms": 212.93466099450598,
+        "duration_ms": 214.21503400051733
+      },
+      {
+        "id": "blind-positive-12",
+        "kind": "positive",
+        "language": "vi",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": true,
+        "ttft_ms": 300.5938429996604,
+        "duration_ms": 302.0346170014818
+      },
+      {
+        "id": "blind-negative-01",
+        "kind": "negative",
+        "language": "en",
+        "mode": "template",
+        "citation_status": "not_applicable",
+        "refused": true,
+        "judged_source_found": null,
+        "ttft_ms": 162.41345800517593,
+        "duration_ms": 163.43620400584769
+      },
+      {
+        "id": "blind-negative-02",
+        "kind": "negative",
+        "language": "vi",
+        "mode": "template",
+        "citation_status": "not_applicable",
+        "refused": true,
+        "judged_source_found": null,
+        "ttft_ms": 193.0656859985902,
+        "duration_ms": 194.12418299907586
+      },
+      {
+        "id": "blind-negative-03",
+        "kind": "negative",
+        "language": "en",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": null,
+        "ttft_ms": 229.1930310020689,
+        "duration_ms": 230.89017299935222
+      },
+      {
+        "id": "blind-negative-04",
+        "kind": "negative",
+        "language": "vi",
+        "mode": "template",
+        "citation_status": "not_applicable",
+        "refused": false,
+        "judged_source_found": null,
+        "ttft_ms": 170.23280300054466,
+        "duration_ms": 171.5811659960309
+      },
+      {
+        "id": "blind-negative-05",
+        "kind": "negative",
+        "language": "en",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": null,
+        "ttft_ms": 317.76452800113475,
+        "duration_ms": 318.79359199956525
+      },
+      {
+        "id": "blind-negative-06",
+        "kind": "negative",
+        "language": "vi",
+        "mode": "template",
+        "citation_status": "not_applicable",
+        "refused": false,
+        "judged_source_found": null,
+        "ttft_ms": 155.2704170026118,
+        "duration_ms": 156.1817389956559
+      },
+      {
+        "id": "blind-negative-07",
+        "kind": "negative",
+        "language": "en",
+        "mode": "extractive",
+        "citation_status": "valid",
+        "refused": false,
+        "judged_source_found": null,
+        "ttft_ms": 218.6171139983344,
+        "duration_ms": 219.76195399474818
+      },
+      {
+        "id": "blind-negative-08",
+        "kind": "negative",
+        "language": "vi",
+        "mode": "template",
+        "citation_status": "not_applicable",
+        "refused": false,
+        "judged_source_found": null,
+        "ttft_ms": 165.7185779986321,
+        "duration_ms": 166.58035999716958
+      }
+    ],
+    "ttft_ms": {
+      "p50": 221.1576994995994,
+      "p95": 328.6234529012292,
+      "p99": 493.6791113826618
+    },
+    "duration_ms": {
+      "p50": 222.16654699514038,
+      "p95": 329.6375844496653,
+      "p99": 494.4662696911834
+    },
+    "human_faithfulness": null,
+    "provider_cache_hit_rate": null,
+    "provider_cost_usd": null
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "scope": "single-host search only, Ollama and batch workers stopped",
+  "search": [
+    {
+      "concurrency": 1,
+      "peak_active_requests": 1,
+      "requests": 23,
+      "rps": 10.457806469584536,
+      "status_counts": {
+        "200": 23
+      },
+      "error_rate": 0.0,
+      "timeout_rate": 0.0,
+      "latency_ms": {
+        "p50": 92.1535289962776,
+        "p95": 115.45456200328772,
+        "p99": 121.2739572611463
+      }
+    },
+    {
+      "concurrency": 2,
+      "peak_active_requests": 2,
+      "requests": 23,
+      "rps": 13.55018578570766,
+      "status_counts": {
+        "200": 23
+      },
+      "error_rate": 0.0,
+      "timeout_rate": 0.0,
+      "latency_ms": {
+        "p50": 134.956661000615,
+        "p95": 248.88020010184837,
+        "p99": 262.18411435664166
+      }
+    },
+    {
+      "concurrency": 4,
+      "peak_active_requests": 4,
+      "requests": 23,
+      "rps": 14.804291781144261,
+      "status_counts": {
+        "200": 23
+      },
+      "error_rate": 0.0,
+      "timeout_rate": 0.0,
+      "latency_ms": {
+        "p50": 269.18567899701884,
+        "p95": 335.08510559768183,
+        "p99": 348.9393305014528
+      }
+    },
+    {
+      "concurrency": 8,
+      "peak_active_requests": 8,
+      "requests": 23,
+      "rps": 10.983911016905218,
+      "status_counts": {
+        "200": 23
+      },
+      "error_rate": 0.0,
+      "timeout_rate": 0.0,
+      "latency_ms": {
+        "p50": 698.9110649956274,
+        "p95": 874.3017157030408,
+        "p99": 875.5779908382101
+      }
+    }
+  ]
+}

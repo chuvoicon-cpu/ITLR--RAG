@@ -1,0 +1,27 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____ test_paid_staging_requires_operator_opt_in_and_positive_shared_budget _____
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x74f2d0489580>
+tmp_path = PosixPath('/tmp/pytest-of-trantien/pytest-26/test_paid_staging_requires_ope0')
+
+    def test_paid_staging_requires_operator_opt_in_and_positive_shared_budget(monkeypatch, tmp_path):
+        from itlr.chatbot import llm_client as llm
+        from itlr.chatbot import provider_budget as budget
+    
+        secret = tmp_path / 'test_provider'
+        secret.write_text('test-credential\n')
+        monkeypatch.delenv('OPENAI_API_KEY', raising=False)
+        monkeypatch.setenv('OPENAI_API_KEY_FILE', str(secret))
+        monkeypatch.setenv('LLM_PROVIDER', 'openai')
+        monkeypatch.setenv('ITLR_REQUIRE_CLOUD_AUTHORIZATION', '1')
+        monkeypatch.setattr(budget, 'configured_redis', lambda: object())
+>       assert llm.api_key('openai') == 'test-credential'
+E       AssertionError: assert None == 'test-credential'
+E        +  where None = <function api_key at 0x74f2d025d440>('openai')
+E        +    where <function api_key at 0x74f2d025d440> = <module 'itlr.chatbot.llm_client' from '/home/trantien/ITLR--RAG/itlr/chatbot/llm_client.py'>.api_key
+
+tests/test_staging_scope.py:26: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_staging_scope.py::test_paid_staging_requires_operator_opt_in_and_positive_shared_budget
+1 failed, 2 deselected in 4.74s

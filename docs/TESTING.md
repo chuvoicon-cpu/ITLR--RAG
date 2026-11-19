@@ -1,15 +1,15 @@
 # Kiểm thử và chiến lược kiểm chứng
 
-Tài liệu chuẩn cho test, coverage và bằng chứng. Số đo mới nhất nằm ở
-[VALIDATION](../reports/VALIDATION.md) và [certification](../reports/FINAL_E2E_CERTIFICATION.md);
-đừng chép số cũ vào README hay báo cáo mới.
+Lệnh kiểm thử và cách đọc bằng chứng. Kết quả hiện hành nằm trong
+[Repository cleanup](../reports/REPOSITORY_CLEANUP.md).
 
 ## 1. Lệnh chạy
 
 Backend (từ repo root, không gọi provider trả phí):
 
 ```bash
-env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
+env -u LLM_PROVIDER -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
+  -u DEEPSEEK_API_KEY_FILE -u OPENAI_API_KEY_FILE \
   USE_OLLAMA=0 DISABLE_RERANKER=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
   .venv/bin/python -m pytest tests/ -o addopts='' -q -ra
 .venv/bin/python -m compileall -q itlr scripts eval
@@ -30,24 +30,17 @@ npm ls minimatch --all
 ```
 
 `pytest.ini` đặt `testpaths = tests` và `addopts = -q`; `-o addopts=''` chỉ dùng khi muốn
-tắt quiet, không phải để bỏ phạm vi test. Web test dùng env giả lập trong
-`web/vitest.config.ts`, không đọc `.env` của người vận hành.
+tắt quiet. Web test dùng cấu hình fixture trong
+`web/vitest.config.mjs`.
 
-## 2. Kết quả mới nhất (máy Linux, commit `f14c428`, không thay đổi code runtime)
-
-| Suite | Kết quả | Coverage |
-|---|---|---|
-| Python `pytest tests/` | **510 passed / 0 failed / 0 skipped**, ~56s | statements **4109/6019 = 68,27%** (`itlr/`, gồm cả pipelines) |
-| Web `vitest` | **166 passed / 32 file** | lines **759/1448 = 52,41%**; statements 49,23%; branches 40,45%; functions 43,97% |
-| Typecheck / ESLint / build | PASS | — |
-| compileall / pip check | PASS | — |
-| pip-audit / npm audit | **0 advisory / 0 vulnerability** | — |
-| Bandit | **0 High** (27 Medium, 46 Low — đã triage) | — |
+## 2. So sánh kết quả
 
 Coverage là số đo local, không phải ngưỡng CI enforce. Không giảm coverage, không bỏ
 assertion, không thêm `skip`/`xfail` để làm xanh suite ([CONSTRAINTS](../CONSTRAINTS.md)).
+Mốc Linux `f14c428` và kết quả Docker/Chrome trước đây được lưu trong
+[Validation](../reports/VALIDATION.md) và [Certification](../reports/FINAL_E2E_CERTIFICATION.md).
 
-## 3. Phạm vi từng nhóm test (58 file Python)
+## 3. Phạm vi từng nhóm test
 
 | Nhóm tiêu biểu | Nội dung |
 |---|---|

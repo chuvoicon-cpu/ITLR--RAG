@@ -120,6 +120,19 @@ Web chuyển tiếp stream của API và **chỉ lưu final** khi nhận đủ `
 sạch. Event đến sau `done`, stream bị cắt hoặc final thiếu `done` không được coi là hoàn
 tất; partial/provisional không được lưu thành câu trả lời.
 
+### Agent tools
+
+Gọi `POST /api/agent/tools` bằng Web session và header `X-CSRF-Token`. Ví dụ body
+`{"tool":"get_user_progress","args":{}}` trả tiến độ theo user đã xác thực.
+Endpoint từ chối trường ngoài schema và không nhận user hoặc tenant do caller chọn.
+
+- `create_learning_plan` trả `plan` và `hash`. `save_learning_plan` cần cùng `track`,
+  `preview_hash`, `confirm: true` và `idempotency_key`. Preview cũ hoặc replay khác payload trả 409.
+- `handoff_to_human` cần `confirm: true`, `detail` và `idempotency_key`. Hàng đợi
+  `GET /api/agent/handoffs` và `POST /api/agent/handoffs/:id/resolve` yêu cầu role admin.
+- Mỗi tool trả một kết quả. `X-Request-ID` dùng để đối chiếu request và các bản ghi audit cho write.
+  [Tool definitions and permissions](architecture/AGENT_TOOL_CONTRACTS.md).
+
 ## 3. Giới hạn chung
 
 - Một worker/replica mỗi service: limiter, presence và khóa artifacts đều trong process

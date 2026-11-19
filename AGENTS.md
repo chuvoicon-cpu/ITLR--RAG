@@ -28,7 +28,7 @@ production-ready. Không tự gán MIT; giữ license/attribution bên thứ ba.
 | `web/` | Giao diện chính Express + TypeScript + EJS + PostgreSQL, cổng 3000 |
 | `itlr.api.server:app` | Backend FastAPI cổng 8000; UI tĩnh chỉ là giao diện phụ |
 | `itlr/retrieval/` | Retrieval service dùng chung, BM25, ngưỡng `min_pct` |
-| `itlr/core/chunks.py` | FAISS chunk, RRF, passage reranking |
+| `itlr/core/chunks.py` | Chunk BM25/RRF/rerank dùng FAISS mặc định hoặc Qdrant opt-in |
 | `itlr/collect/`, `itlr/pipelines/` | Ingestion có robots/rate-limit/SQLite; build artifacts |
 | `itlr/chatbot/llm_client.py` | Tầng generation LLM duy nhất: DeepSeek/OpenAI/Ollama |
 | `itlr/versioning.py`, `itlr/locking.py` | Staging, probe, pointer/history atomic, rollback, GC, khóa Linux local |
@@ -37,10 +37,29 @@ production-ready. Không tự gán MIT; giữ license/attribution bên thứ ba.
   module này.
 - `/admin/reload` yêu cầu `X-Admin-Token` khớp `ITLR_ADMIN_TOKEN`; chưa cấu hình phải 403.
 - CF tùy chọn: thiếu model trả 503 ở personas/for-you, không làm hỏng retrieval.
+- Qdrant API dùng reader key, indexer dùng writer key. Promote cần parity report và alias
+  phải khớp fingerprint trước khi reload. [Migration](docs/architecture/QDRANT_MIGRATION.md).
 - Một worker/replica mỗi service trên local filesystem; không suy diễn khóa local/limiter RAM
   thành hỗ trợ nhiều host.
 
-## Checkpoint hiện hành
+## Checkpoint staging readiness — 2026-11-18
+
+564 Python và 177 Web PASS, Web line coverage 55,29%. Hai replica đã kiểm single-host.
+Staging HOLD vì tenant membership, human faithfulness và SLO generation.
+[Cổng và bằng chứng](reports/STAGING_READINESS.md).
+
+## Checkpoint agent hardening — 2026-11-18
+
+559 Python và 176 Web PASS, Web line coverage 55,43%. Native vẫn ở evaluator dù 8/8
+negative đã rỗng với dense floor chung. Xem [gates và bằng chứng](reports/AGENT_HARDENING_2026-11-18.md).
+
+## Baseline agent platform — 2026-11-18
+
+HEAD `ce53b14` có 534 Python và 166 Web test PASS trước migration. Kết quả mới, phạm vi
+Compose và blockers nằm trong [release readiness](reports/RELEASE_READINESS.md). Các số ở
+checkpoint dưới thuộc đợt 2026-10-31.
+
+## Checkpoint lịch sử
 
 **510 Python PASS/0 skip** (coverage statements **68,27%**), **166 Web PASS** (lines
 **52,41%**); typecheck/lint/build, compileall, pip check, pip-audit 0, npm audit 0, Bandit

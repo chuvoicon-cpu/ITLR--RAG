@@ -1,0 +1,153 @@
+{
+  "levels": [
+    {
+      "concurrency": 1,
+      "requests": 1,
+      "rps": 0.026626082619966313,
+      "accepted": 1,
+      "errors": 0,
+      "elapsed_ms": {
+        "p50": 37556.53063299542,
+        "p95": 37556.53063299542,
+        "p99": 37556.53063299542
+      },
+      "ttft_ms": {
+        "p50": 37518.90977099538,
+        "p95": 37518.90977099538,
+        "p99": 37518.90977099538
+      },
+      "samples": [
+        {
+          "elapsed_ms": 37556.53063299542,
+          "first_text_ms": 37518.90977099538,
+          "mode": "llm_extractive",
+          "citation": "valid",
+          "error": null,
+          "web_timings": {
+            "sources_ms": 323.02086799999233,
+            "first_token_ms": 37513.14841700002,
+            "total_ms": 37549.92141300003
+          },
+          "accepted": true
+        }
+      ]
+    },
+    {
+      "concurrency": 2,
+      "requests": 2,
+      "rps": 0.05346533666039515,
+      "accepted": 2,
+      "errors": 0,
+      "elapsed_ms": {
+        "p50": 19511.396343998058,
+        "p95": 35616.31871950194,
+        "p99": 37047.86737510229
+      },
+      "ttft_ms": {
+        "p50": 19490.013374997943,
+        "p95": 35594.253005096834,
+        "p99": 37025.740972216736
+      },
+      "samples": [
+        {
+          "elapsed_ms": 1617.0381489937427,
+          "first_text_ms": 1596.4137859991752,
+          "mode": "llm_extractive",
+          "citation": "valid",
+          "error": null,
+          "web_timings": {
+            "sources_ms": 189.38467599998694,
+            "first_token_ms": 1591.1223170000012,
+            "total_ms": 1610.5349099999876
+          },
+          "accepted": true
+        },
+        {
+          "elapsed_ms": 37405.75453900237,
+          "first_text_ms": 37383.61296399671,
+          "mode": "llm_extractive",
+          "citation": "valid",
+          "error": null,
+          "web_timings": {
+            "sources_ms": 213.98986199998762,
+            "first_token_ms": 37364.76360800001,
+            "total_ms": 37386.43817000004
+          },
+          "accepted": true
+        }
+      ]
+    },
+    {
+      "concurrency": 4,
+      "requests": 4,
+      "rps": 0.040265158837012295,
+      "accepted": 3,
+      "errors": 0,
+      "elapsed_ms": {
+        "p50": 42505.29668699892,
+        "p95": 90957.92761609954,
+        "p99": 97661.87565362
+      },
+      "ttft_ms": {
+        "p50": 41501.38503500057,
+        "p95": 43259.14572559923,
+        "p99": 43415.39112031911
+      },
+      "samples": [
+        {
+          "elapsed_ms": 2386.633050002274,
+          "first_text_ms": 2367.50675499934,
+          "mode": "llm_extractive",
+          "citation": "valid",
+          "error": null,
+          "web_timings": {
+            "sources_ms": 488.94763000000967,
+            "first_token_ms": 2360.3158229999826,
+            "total_ms": 2378.005399000016
+          },
+          "accepted": true
+        },
+        {
+          "elapsed_ms": 43471.6290169963,
+          "first_text_ms": 43454.45246899908,
+          "mode": "llm_extractive",
+          "citation": "valid",
+          "error": null,
+          "web_timings": {
+            "sources_ms": 528.0662720000255,
+            "first_token_ms": 43421.83997800003,
+            "total_ms": 43438.08379299997
+          },
+          "accepted": true
+        },
+        {
+          "elapsed_ms": 99337.86266300012,
+          "first_text_ms": null,
+          "mode": "insufficient_evidence",
+          "citation": "missing",
+          "error": null,
+          "web_timings": {
+            "sources_ms": 599.3064799999702,
+            "first_token_ms": null,
+            "total_ms": 99299.71122899995
+          },
+          "accepted": false
+        },
+        {
+          "elapsed_ms": 41538.96435700153,
+          "first_text_ms": 41501.38503500057,
+          "mode": "llm_extractive",
+          "citation": "valid",
+          "error": null,
+          "web_timings": {
+            "sources_ms": 478.5245480000158,
+            "first_token_ms": 41490.20236799994,
+            "total_ms": 41526.62528499996
+          },
+          "accepted": true
+        }
+      ]
+    }
+  ],
+  "paid_cost_usd": null
+}

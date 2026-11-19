@@ -1,0 +1,1806 @@
+{
+  "scope": "same precomputed E5 query vectors, CPU, loopback Qdrant, ChunkIndex, no reranker/LLM",
+  "labels": "frozen engineer-authored qrels",
+  "min_pct": 84,
+  "manifest_sha256": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+  "items": 118,
+  "points": 1576,
+  "queries": {
+    "release_queries.jsonl": "b7760b733697c716373d379ecd685f193f67874a9e0957b7fcc3a5e913be8dfc",
+    "engineering_confirmation_queries.jsonl": "459f71715002d1fad7b6d2271120df256df98eb4c8f26a34de827c74ebe70aaa"
+  },
+  "faiss": {
+    "recall@5": 0.8243243243243243,
+    "mrr@5": 0.6549549549549549,
+    "ndcg@5": 0.6879325738907638,
+    "negative_empty_count": 8,
+    "negative_count": 8,
+    "serial": {
+      "p50_ms": 2.152234999812208,
+      "p95_ms": 3.8115438044769685,
+      "p99_ms": 8.19626335694922,
+      "rps": 402.8064257779781,
+      "peak_active_limit": 1,
+      "errors": 0
+    }
+  },
+  "qdrant": {
+    "recall@5": 0.8243243243243243,
+    "mrr@5": 0.6549549549549549,
+    "ndcg@5": 0.6879325738907638,
+    "negative_empty_count": 8,
+    "negative_count": 8,
+    "load": {
+      "1": {
+        "p50_ms": 6.7059599969070405,
+        "p95_ms": 14.277168401167721,
+        "p99_ms": 48.50586308341008,
+        "rps": 109.51721060826132,
+        "peak_active_limit": 1,
+        "errors": 0
+      },
+      "2": {
+        "p50_ms": 7.647218997590244,
+        "p95_ms": 14.043865400890347,
+        "p99_ms": 48.30156432377408,
+        "rps": 208.00770497993406,
+        "peak_active_limit": 2,
+        "errors": 0
+      },
+      "4": {
+        "p50_ms": 15.146663004998118,
+        "p95_ms": 30.215321402647525,
+        "p99_ms": 56.59772892075135,
+        "rps": 218.1101426944489,
+        "peak_active_limit": 4,
+        "errors": 0
+      },
+      "8": {
+        "p50_ms": 27.73653199983528,
+        "p95_ms": 54.71179859887343,
+        "p99_ms": 77.80843488377286,
+        "rps": 223.4730189201528,
+        "peak_active_limit": 8,
+        "errors": 0
+      }
+    }
+  },
+  "rank_drift": [],
+  "cases": [
+    {
+      "id": "en-5001",
+      "kind": "english",
+      "faiss": [
+        "5001:4"
+      ],
+      "qdrant": [
+        "5001:4"
+      ]
+    },
+    {
+      "id": "en-5003",
+      "kind": "english",
+      "faiss": [
+        "5003:1"
+      ],
+      "qdrant": [
+        "5003:1"
+      ]
+    },
+    {
+      "id": "en-5011",
+      "kind": "english",
+      "faiss": [
+        "5015:4",
+        "5004:1",
+        "5021:10",
+        "5001:1",
+        "5011:1"
+      ],
+      "qdrant": [
+        "5015:4",
+        "5004:1",
+        "5021:10",
+        "5001:1",
+        "5011:1"
+      ]
+    },
+    {
+      "id": "en-5024",
+      "kind": "english",
+      "faiss": [
+        "5055:8",
+        "5052:7",
+        "5058:6",
+        "5089:14",
+        "5024:1"
+      ],
+      "qdrant": [
+        "5055:8",
+        "5052:7",
+        "5058:6",
+        "5089:14",
+        "5024:1"
+      ]
+    },
+    {
+      "id": "en-5028",
+      "kind": "english",
+      "faiss": [
+        "5054:2",
+        "5040:1",
+        "5041:0",
+        "5028:0"
+      ],
+      "qdrant": [
+        "5054:2",
+        "5040:1",
+        "5041:0",
+        "5028:0"
+      ]
+    },
+    {
+      "id": "en-5117",
+      "kind": "english",
+      "faiss": [
+        "5079:2",
+        "5117:2"
+      ],
+      "qdrant": [
+        "5079:2",
+        "5117:2"
+      ]
+    },
+    {
+      "id": "en-5121",
+      "kind": "english",
+      "faiss": [
+        "5111:0",
+        "5121:6",
+        "5061:3"
+      ],
+      "qdrant": [
+        "5111:0",
+        "5121:6",
+        "5061:3"
+      ]
+    },
+    {
+      "id": "en-5126",
+      "kind": "english",
+      "faiss": [
+        "5124:1",
+        "5126:10"
+      ],
+      "qdrant": [
+        "5124:1",
+        "5126:10"
+      ]
+    },
+    {
+      "id": "vi-5001",
+      "kind": "vietnamese",
+      "faiss": [
+        "5001:4"
+      ],
+      "qdrant": [
+        "5001:4"
+      ]
+    },
+    {
+      "id": "vi-5003",
+      "kind": "vietnamese",
+      "faiss": [
+        "5004:3",
+        "5003:0"
+      ],
+      "qdrant": [
+        "5004:3",
+        "5003:0"
+      ]
+    },
+    {
+      "id": "vi-5011",
+      "kind": "vietnamese",
+      "faiss": [
+        "5021:10",
+        "5004:1",
+        "5011:1"
+      ],
+      "qdrant": [
+        "5021:10",
+        "5004:1",
+        "5011:1"
+      ]
+    },
+    {
+      "id": "vi-5024",
+      "kind": "vietnamese",
+      "faiss": [
+        "5024:11",
+        "5029:10"
+      ],
+      "qdrant": [
+        "5024:11",
+        "5029:10"
+      ]
+    },
+    {
+      "id": "vi-5028",
+      "kind": "vietnamese",
+      "faiss": [
+        "5028:0"
+      ],
+      "qdrant": [
+        "5028:0"
+      ]
+    },
+    {
+      "id": "vi-5117",
+      "kind": "vietnamese",
+      "faiss": [
+        "5079:0",
+        "5117:2"
+      ],
+      "qdrant": [
+        "5079:0",
+        "5117:2"
+      ]
+    },
+    {
+      "id": "vi-5121",
+      "kind": "vietnamese",
+      "faiss": [
+        "5121:4"
+      ],
+      "qdrant": [
+        "5121:4"
+      ]
+    },
+    {
+      "id": "vi-5126",
+      "kind": "vietnamese",
+      "faiss": [
+        "5126:10"
+      ],
+      "qdrant": [
+        "5126:10"
+      ]
+    },
+    {
+      "id": "noise-port",
+      "kind": "noisy",
+      "faiss": [
+        "5015:5",
+        "5013:5",
+        "5004:1",
+        "5011:1",
+        "5001:7"
+      ],
+      "qdrant": [
+        "5015:5",
+        "5013:5",
+        "5004:1",
+        "5011:1",
+        "5001:7"
+      ]
+    },
+    {
+      "id": "noise-venv",
+      "kind": "noisy",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "noise-cors",
+      "kind": "noisy",
+      "faiss": [
+        "5029:9",
+        "5024:1",
+        "5089:14",
+        "5047:6",
+        "5052:7"
+      ],
+      "qdrant": [
+        "5029:9",
+        "5024:1",
+        "5089:14",
+        "5047:6",
+        "5052:7"
+      ]
+    },
+    {
+      "id": "multi-python",
+      "kind": "multistep",
+      "faiss": [
+        "5117:2",
+        "5061:10"
+      ],
+      "qdrant": [
+        "5117:2",
+        "5061:10"
+      ]
+    },
+    {
+      "id": "multi-docker",
+      "kind": "multistep",
+      "faiss": [
+        "5003:0",
+        "5004:3",
+        "5011:6"
+      ],
+      "qdrant": [
+        "5003:0",
+        "5004:3",
+        "5011:6"
+      ]
+    },
+    {
+      "id": "none-private",
+      "kind": "unanswerable",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "none-live",
+      "kind": "unanswerable",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "confirmation-en-5026",
+      "kind": "en",
+      "faiss": [
+        "5026:0",
+        "5055:12",
+        "5089:15",
+        "5029:3"
+      ],
+      "qdrant": [
+        "5026:0",
+        "5055:12",
+        "5089:15",
+        "5029:3"
+      ]
+    },
+    {
+      "id": "confirmation-vi-5026",
+      "kind": "vi",
+      "faiss": [
+        "5026:0"
+      ],
+      "qdrant": [
+        "5026:0"
+      ]
+    },
+    {
+      "id": "confirmation-en-5031",
+      "kind": "en",
+      "faiss": [
+        "5031:0",
+        "5056:5",
+        "5030:4"
+      ],
+      "qdrant": [
+        "5031:0",
+        "5056:5",
+        "5030:4"
+      ]
+    },
+    {
+      "id": "confirmation-vi-5031",
+      "kind": "vi",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "confirmation-en-5043",
+      "kind": "en",
+      "faiss": [
+        "5043:0"
+      ],
+      "qdrant": [
+        "5043:0"
+      ]
+    },
+    {
+      "id": "confirmation-vi-5043",
+      "kind": "vi",
+      "faiss": [
+        "5043:0"
+      ],
+      "qdrant": [
+        "5043:0"
+      ]
+    },
+    {
+      "id": "confirmation-en-5062",
+      "kind": "en",
+      "faiss": [
+        "5062:0",
+        "5114:8",
+        "5063:0",
+        "5112:7"
+      ],
+      "qdrant": [
+        "5062:0",
+        "5114:8",
+        "5063:0",
+        "5112:7"
+      ]
+    },
+    {
+      "id": "confirmation-vi-5062",
+      "kind": "vi",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "confirmation-en-5073",
+      "kind": "en",
+      "faiss": [
+        "5073:0"
+      ],
+      "qdrant": [
+        "5073:0"
+      ]
+    },
+    {
+      "id": "confirmation-vi-5073",
+      "kind": "vi",
+      "faiss": [
+        "5073:0"
+      ],
+      "qdrant": [
+        "5073:0"
+      ]
+    },
+    {
+      "id": "confirmation-en-5084",
+      "kind": "en",
+      "faiss": [
+        "5084:2"
+      ],
+      "qdrant": [
+        "5084:2"
+      ]
+    },
+    {
+      "id": "confirmation-vi-5084",
+      "kind": "vi",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "confirmation-en-5098",
+      "kind": "en",
+      "faiss": [
+        "5098:0",
+        "5123:13"
+      ],
+      "qdrant": [
+        "5098:0",
+        "5123:13"
+      ]
+    },
+    {
+      "id": "confirmation-vi-5098",
+      "kind": "vi",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "confirmation-en-5109",
+      "kind": "en",
+      "faiss": [
+        "5109:2"
+      ],
+      "qdrant": [
+        "5109:2"
+      ]
+    },
+    {
+      "id": "confirmation-vi-5109",
+      "kind": "vi",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "confirmation-negative-0",
+      "kind": "negative",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "confirmation-negative-1",
+      "kind": "negative",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "confirmation-negative-2",
+      "kind": "negative",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "confirmation-negative-3",
+      "kind": "negative",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "confirmation-negative-4",
+      "kind": "negative",
+      "faiss": [],
+      "qdrant": []
+    },
+    {
+      "id": "confirmation-negative-5",
+      "kind": "negative",
+      "faiss": [],
+      "qdrant": []
+    }
+  ],
+  "peak_process_rss_mib": 1416.97265625,
+  "ttft_ms": null,
+  "provider_cost": null,
+  "human_faithfulness": null,
+  "native_experiment": {
+    "recall@5": 0.972972972972973,
+    "mrr@5": 0.859009009009009,
+    "ndcg@5": 0.8832618907537875,
+    "negative_empty_count": 4,
+    "negative_count": 8,
+    "serial": {
+      "p50_ms": 58.11267100216355,
+      "p95_ms": 69.95916820451384,
+      "p99_ms": 71.91685975965811,
+      "rps": 18.61630354874845,
+      "peak_active_limit": 1,
+      "errors": 0
+    },
+    "independent_dense_sparse": true,
+    "changed_rankings": 41,
+    "cases": [
+      {
+        "id": "en-5001",
+        "chunks": [
+          "5001:4",
+          "5021:4",
+          "5002:9",
+          "5014:7",
+          "5003:9"
+        ]
+      },
+      {
+        "id": "en-5003",
+        "chunks": [
+          "5003:1",
+          "5021:4",
+          "5004:2",
+          "5054:2",
+          "5011:2"
+        ]
+      },
+      {
+        "id": "en-5011",
+        "chunks": [
+          "5011:1",
+          "5015:4",
+          "5004:1",
+          "5001:1",
+          "5052:7"
+        ]
+      },
+      {
+        "id": "en-5024",
+        "chunks": [
+          "5024:11",
+          "5029:13",
+          "5055:8",
+          "5052:7",
+          "5047:14"
+        ]
+      },
+      {
+        "id": "en-5028",
+        "chunks": [
+          "5028:0",
+          "5054:2",
+          "5057:5",
+          "5040:1",
+          "5041:0"
+        ]
+      },
+      {
+        "id": "en-5117",
+        "chunks": [
+          "5079:2",
+          "5117:3",
+          "5090:8",
+          "5048:11",
+          "5032:1"
+        ]
+      },
+      {
+        "id": "en-5121",
+        "chunks": [
+          "5121:4",
+          "5111:0",
+          "5061:3",
+          "5086:9",
+          "5125:8"
+        ]
+      },
+      {
+        "id": "en-5126",
+        "chunks": [
+          "5126:10",
+          "5124:1",
+          "5106:1",
+          "5105:4",
+          "5113:7"
+        ]
+      },
+      {
+        "id": "vi-5001",
+        "chunks": [
+          "5001:4",
+          "5021:4",
+          "5002:9",
+          "5014:7",
+          "5003:9"
+        ]
+      },
+      {
+        "id": "vi-5003",
+        "chunks": [
+          "5003:0",
+          "5004:3",
+          "5011:6",
+          "5021:4",
+          "5013:6"
+        ]
+      },
+      {
+        "id": "vi-5011",
+        "chunks": [
+          "5011:1",
+          "5004:1",
+          "5021:10",
+          "5015:5",
+          "5001:0"
+        ]
+      },
+      {
+        "id": "vi-5024",
+        "chunks": [
+          "5024:11",
+          "5029:10",
+          "5047:5",
+          "5055:8",
+          "5069:4"
+        ]
+      },
+      {
+        "id": "vi-5028",
+        "chunks": [
+          "5028:0",
+          "5057:5",
+          "5100:12",
+          "5039:6",
+          "5048:3"
+        ]
+      },
+      {
+        "id": "vi-5117",
+        "chunks": [
+          "5079:0",
+          "5117:2",
+          "5116:1",
+          "5065:12",
+          "5127:0"
+        ]
+      },
+      {
+        "id": "vi-5121",
+        "chunks": [
+          "5121:4",
+          "5111:6",
+          "5061:3",
+          "5036:9",
+          "5128:5"
+        ]
+      },
+      {
+        "id": "vi-5126",
+        "chunks": [
+          "5126:10",
+          "5106:1",
+          "5124:14",
+          "5116:3",
+          "5033:12"
+        ]
+      },
+      {
+        "id": "noise-port",
+        "chunks": [
+          "5011:1",
+          "5015:5",
+          "5013:5",
+          "5004:1",
+          "5001:14"
+        ]
+      },
+      {
+        "id": "noise-venv",
+        "chunks": [
+          "5079:9",
+          "5117:2"
+        ]
+      },
+      {
+        "id": "noise-cors",
+        "chunks": [
+          "5029:9",
+          "5024:1",
+          "5047:6",
+          "5089:14",
+          "5052:7"
+        ]
+      },
+      {
+        "id": "multi-python",
+        "chunks": [
+          "5117:2",
+          "5061:10",
+          "5121:4",
+          "5111:6",
+          "5079:3"
+        ]
+      },
+      {
+        "id": "multi-docker",
+        "chunks": [
+          "5003:0",
+          "5004:3",
+          "5011:6",
+          "5015:4",
+          "5088:1"
+        ]
+      },
+      {
+        "id": "none-private",
+        "chunks": []
+      },
+      {
+        "id": "none-live",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-en-5026",
+        "chunks": [
+          "5026:0",
+          "5055:12",
+          "5089:15",
+          "5029:3",
+          "5024:9"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5026",
+        "chunks": [
+          "5026:0",
+          "5024:9",
+          "5088:12",
+          "5055:12",
+          "5069:4"
+        ]
+      },
+      {
+        "id": "confirmation-en-5031",
+        "chunks": [
+          "5031:0",
+          "5030:7",
+          "5056:5",
+          "5047:8",
+          "5038:0"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5031",
+        "chunks": [
+          "5030:3",
+          "5029:0",
+          "5031:2",
+          "5038:0",
+          "5056:2"
+        ]
+      },
+      {
+        "id": "confirmation-en-5043",
+        "chunks": [
+          "5043:0",
+          "5044:1",
+          "5057:5",
+          "5048:3",
+          "5058:8"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5043",
+        "chunks": [
+          "5043:0",
+          "5048:3",
+          "5067:9",
+          "5041:10",
+          "5045:1"
+        ]
+      },
+      {
+        "id": "confirmation-en-5062",
+        "chunks": [
+          "5062:0",
+          "5114:8",
+          "5063:0",
+          "5112:7",
+          "5119:12"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5062",
+        "chunks": [
+          "5123:9",
+          "5079:2",
+          "5097:0",
+          "5114:15",
+          "5062:0"
+        ]
+      },
+      {
+        "id": "confirmation-en-5073",
+        "chunks": [
+          "5073:0",
+          "5100:0",
+          "5091:1",
+          "5093:0",
+          "5127:2"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5073",
+        "chunks": [
+          "5073:0",
+          "5123:9",
+          "5079:2",
+          "5097:0",
+          "5074:12"
+        ]
+      },
+      {
+        "id": "confirmation-en-5084",
+        "chunks": [
+          "5084:2",
+          "5060:2",
+          "5122:3",
+          "5085:12",
+          "5051:3"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5084",
+        "chunks": [
+          "5084:0",
+          "5085:13",
+          "5051:3",
+          "5060:2",
+          "5118:11"
+        ]
+      },
+      {
+        "id": "confirmation-en-5098",
+        "chunks": [
+          "5098:0",
+          "5123:13",
+          "5060:10",
+          "5097:12",
+          "5078:10"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5098",
+        "chunks": [
+          "5123:9",
+          "5079:2",
+          "5097:0",
+          "5098:0",
+          "5067:0"
+        ]
+      },
+      {
+        "id": "confirmation-en-5109",
+        "chunks": [
+          "5109:2",
+          "5119:3",
+          "5122:4",
+          "5127:2",
+          "5033:0"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5109",
+        "chunks": [
+          "5123:9",
+          "5079:2",
+          "5097:0",
+          "5116:1",
+          "5085:1"
+        ]
+      },
+      {
+        "id": "confirmation-negative-0",
+        "chunks": [
+          "5114:1",
+          "5090:9",
+          "5071:6",
+          "5035:3",
+          "5091:13"
+        ]
+      },
+      {
+        "id": "confirmation-negative-1",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-negative-2",
+        "chunks": [
+          "5021:6",
+          "5123:3",
+          "5069:1",
+          "5075:5",
+          "5027:9"
+        ]
+      },
+      {
+        "id": "confirmation-negative-3",
+        "chunks": [
+          "5023:7"
+        ]
+      },
+      {
+        "id": "confirmation-negative-4",
+        "chunks": [
+          "5013:3",
+          "5109:15",
+          "5125:14",
+          "5053:5",
+          "5057:1"
+        ]
+      },
+      {
+        "id": "confirmation-negative-5",
+        "chunks": []
+      }
+    ]
+  },
+  "native_dense_gated": {
+    "recall@5": 0.8243243243243243,
+    "mrr@5": 0.7972972972972973,
+    "ndcg@5": 0.795288033584541,
+    "negative_empty_count": 8,
+    "negative_count": 8,
+    "serial": {
+      "p50_ms": 15.092811998329125,
+      "p95_ms": 23.49715340096736,
+      "p99_ms": 100.3877550017205,
+      "rps": 51.71879835145752,
+      "peak_active_limit": 1,
+      "errors": 0
+    },
+    "cases": [
+      {
+        "id": "en-5001",
+        "chunks": [
+          "5001:4"
+        ]
+      },
+      {
+        "id": "en-5003",
+        "chunks": [
+          "5003:1"
+        ]
+      },
+      {
+        "id": "en-5011",
+        "chunks": [
+          "5011:1",
+          "5015:4",
+          "5004:1",
+          "5021:10",
+          "5001:1"
+        ]
+      },
+      {
+        "id": "en-5024",
+        "chunks": [
+          "5024:11",
+          "5029:13",
+          "5055:8",
+          "5052:7",
+          "5047:14"
+        ]
+      },
+      {
+        "id": "en-5028",
+        "chunks": [
+          "5028:1",
+          "5054:2",
+          "5040:1",
+          "5041:0"
+        ]
+      },
+      {
+        "id": "en-5117",
+        "chunks": [
+          "5079:2",
+          "5117:3"
+        ]
+      },
+      {
+        "id": "en-5121",
+        "chunks": [
+          "5121:9",
+          "5111:0",
+          "5061:10"
+        ]
+      },
+      {
+        "id": "en-5126",
+        "chunks": [
+          "5126:10",
+          "5124:1"
+        ]
+      },
+      {
+        "id": "vi-5001",
+        "chunks": [
+          "5001:4"
+        ]
+      },
+      {
+        "id": "vi-5003",
+        "chunks": [
+          "5003:8",
+          "5004:3"
+        ]
+      },
+      {
+        "id": "vi-5011",
+        "chunks": [
+          "5011:1",
+          "5004:1",
+          "5021:10"
+        ]
+      },
+      {
+        "id": "vi-5024",
+        "chunks": [
+          "5024:11",
+          "5029:10"
+        ]
+      },
+      {
+        "id": "vi-5028",
+        "chunks": [
+          "5028:0"
+        ]
+      },
+      {
+        "id": "vi-5117",
+        "chunks": [
+          "5079:0",
+          "5117:2"
+        ]
+      },
+      {
+        "id": "vi-5121",
+        "chunks": [
+          "5121:4"
+        ]
+      },
+      {
+        "id": "vi-5126",
+        "chunks": [
+          "5126:10"
+        ]
+      },
+      {
+        "id": "noise-port",
+        "chunks": [
+          "5011:1",
+          "5015:5",
+          "5013:5",
+          "5001:14",
+          "5004:1"
+        ]
+      },
+      {
+        "id": "noise-venv",
+        "chunks": []
+      },
+      {
+        "id": "noise-cors",
+        "chunks": [
+          "5029:9",
+          "5024:1",
+          "5047:6",
+          "5089:14",
+          "5052:7"
+        ]
+      },
+      {
+        "id": "multi-python",
+        "chunks": [
+          "5117:2",
+          "5061:10"
+        ]
+      },
+      {
+        "id": "multi-docker",
+        "chunks": [
+          "5003:0",
+          "5004:3",
+          "5011:6"
+        ]
+      },
+      {
+        "id": "none-private",
+        "chunks": []
+      },
+      {
+        "id": "none-live",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-en-5026",
+        "chunks": [
+          "5026:0",
+          "5055:12",
+          "5089:15",
+          "5029:3"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5026",
+        "chunks": [
+          "5026:0"
+        ]
+      },
+      {
+        "id": "confirmation-en-5031",
+        "chunks": [
+          "5031:0",
+          "5030:4",
+          "5056:5"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5031",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-en-5043",
+        "chunks": [
+          "5043:1"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5043",
+        "chunks": [
+          "5043:4"
+        ]
+      },
+      {
+        "id": "confirmation-en-5062",
+        "chunks": [
+          "5062:0",
+          "5114:8",
+          "5063:0",
+          "5112:7"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5062",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-en-5073",
+        "chunks": [
+          "5073:0"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5073",
+        "chunks": [
+          "5073:0"
+        ]
+      },
+      {
+        "id": "confirmation-en-5084",
+        "chunks": [
+          "5084:2"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5084",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-en-5098",
+        "chunks": [
+          "5098:0",
+          "5123:13"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5098",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-en-5109",
+        "chunks": [
+          "5109:2"
+        ]
+      },
+      {
+        "id": "confirmation-vi-5109",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-negative-0",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-negative-1",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-negative-2",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-negative-3",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-negative-4",
+        "chunks": []
+      },
+      {
+        "id": "confirmation-negative-5",
+        "chunks": []
+      }
+    ],
+    "human_reviewed_cases": null,
+    "promotion_allowed": false
+  },
+  "negative_diagnostics": [
+    {
+      "id": "none-private",
+      "query": "Mật khẩu tài khoản cá nhân hiện tại của tôi là gì?",
+      "judgments": [],
+      "max_dense": 0.80197734,
+      "threshold": 0.84,
+      "top_k": 5,
+      "branch_filters": {
+        "dense": {
+          "must": [
+            {
+              "key": "version",
+              "match": {
+                "value": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+              }
+            },
+            {
+              "key": "approval_state",
+              "match": {
+                "value": "approved"
+              }
+            }
+          ]
+        }
+      },
+      "top_hits": [],
+      "gated_chunks": []
+    },
+    {
+      "id": "none-live",
+      "query": "Nhiệt độ ngoài trời ngay lúc này ở nhà tôi là bao nhiêu?",
+      "judgments": [],
+      "max_dense": 0.7803426,
+      "threshold": 0.84,
+      "top_k": 5,
+      "branch_filters": {
+        "dense": {
+          "must": [
+            {
+              "key": "version",
+              "match": {
+                "value": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+              }
+            },
+            {
+              "key": "approval_state",
+              "match": {
+                "value": "approved"
+              }
+            }
+          ]
+        }
+      },
+      "top_hits": [],
+      "gated_chunks": []
+    },
+    {
+      "id": "confirmation-negative-0",
+      "query": "How many calories should I eat tomorrow?",
+      "judgments": [],
+      "max_dense": 0.8004937,
+      "threshold": 0.84,
+      "top_k": 5,
+      "branch_filters": {
+        "dense": {
+          "must": [
+            {
+              "key": "version",
+              "match": {
+                "value": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+              }
+            },
+            {
+              "key": "approval_state",
+              "match": {
+                "value": "approved"
+              }
+            }
+          ]
+        },
+        "bm25": {
+          "must": [
+            {
+              "key": "version",
+              "match": {
+                "value": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+              }
+            },
+            {
+              "key": "approval_state",
+              "match": {
+                "value": "approved"
+              }
+            }
+          ]
+        }
+      },
+      "top_hits": [
+        {
+          "chunk_id": "5114:1",
+          "source_id": "python-official",
+          "excerpt": "ider the fraction 1/3. You can approximate that as a base 10 fraction: 0.3 or, better, 0.33 or, better, 0.333 and so on. No matter how many digits you’re willing to write down, the result will never be exactly 1/3, but will be an increasing",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.7674136,
+          "rrf": 0.016393442,
+          "sparse_rank_score": [
+            1,
+            14.126797
+          ],
+          "dense_rank_score": null
+        },
+        {
+          "chunk_id": "5090:9",
+          "source_id": "python-official",
+          "excerpt": "sqlite3.LEGACY_TRANSACTION_CONTROL ) ¶ Open a connection to an SQLite database. Parameters : database ( path-like object ) – The path to the database file to be opened. You can pass \":memory:\" to create an SQLite database existing only in m",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.7386102,
+          "rrf": 0.016129032,
+          "sparse_rank_score": [
+            2,
+            11.33194
+          ],
+          "dense_rank_score": null
+        },
+        {
+          "chunk_id": "5071:6",
+          "source_id": "python-official",
+          "excerpt": "n ¶ Specify how many child processes will exist to handle requests at a time for ForkingMixIn . If the limit is reached, new requests will wait until one child process has finished. For ThreadingMixIn use daemonic threads by setting Threadi",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.76041424,
+          "rrf": 0.015873017,
+          "sparse_rank_score": [
+            3,
+            10.352392
+          ],
+          "dense_rank_score": null
+        },
+        {
+          "chunk_id": "5035:3",
+          "source_id": "mdn-official",
+          "excerpt": "ML html <form name=\"selectForm\"> <label for=\"musicTypes\" >Choose some music types, then click the button below:</label > <select id=\"musicTypes\" name=\"musicTypes\" multiple> <option selected>R&amp;B</option> <option>Jazz</option> <option>Blu",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.76334614,
+          "rrf": 0.015384615,
+          "sparse_rank_score": [
+            5,
+            10.047972
+          ],
+          "dense_rank_score": null
+        },
+        {
+          "chunk_id": "5091:13",
+          "source_id": "python-official",
+          "excerpt": "ass defines the usual properties of a CSV file generated on UNIX systems, i.e. using '\\n' as line terminator and quoting all fields. It is registered with the dialect name 'unix' . Added in version 3.2. class csv. Sniffer ¶ The Sniffer clas",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.7186473,
+          "rrf": 0.015151516,
+          "sparse_rank_score": [
+            6,
+            9.998967
+          ],
+          "dense_rank_score": null
+        }
+      ],
+      "gated_chunks": []
+    },
+    {
+      "id": "confirmation-negative-1",
+      "query": "Kết quả xổ số hôm nay là gì?",
+      "judgments": [],
+      "max_dense": 0.7854756,
+      "threshold": 0.84,
+      "top_k": 5,
+      "branch_filters": {
+        "dense": {
+          "must": [
+            {
+              "key": "version",
+              "match": {
+                "value": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+              }
+            },
+            {
+              "key": "approval_state",
+              "match": {
+                "value": "approved"
+              }
+            }
+          ]
+        }
+      },
+      "top_hits": [],
+      "gated_chunks": []
+    },
+    {
+      "id": "confirmation-negative-2",
+      "query": "Find my own private password stored on this server.",
+      "judgments": [],
+      "max_dense": 0.8176453,
+      "threshold": 0.84,
+      "top_k": 5,
+      "branch_filters": {
+        "dense": {
+          "must": [
+            {
+              "key": "version",
+              "match": {
+                "value": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+              }
+            },
+            {
+              "key": "approval_state",
+              "match": {
+                "value": "approved"
+              }
+            }
+          ]
+        },
+        "bm25": {
+          "must": [
+            {
+              "key": "version",
+              "match": {
+                "value": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+              }
+            },
+            {
+              "key": "approval_state",
+              "match": {
+                "value": "approved"
+              }
+            }
+          ]
+        }
+      },
+      "top_hits": [
+        {
+          "chunk_id": "5021:6",
+          "source_id": "docker-official",
+          "excerpt": "more information, see Docker Desktop . Docker registries A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use, and Docker looks for images on Docker Hub by default. You can even run your own private re",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.75393605,
+          "rrf": 0.016393442,
+          "sparse_rank_score": [
+            1,
+            17.1025
+          ],
+          "dense_rank_score": null
+        },
+        {
+          "chunk_id": "5123:3",
+          "source_id": "python-official",
+          "excerpt": "34 55 89 144 233 377 6.1. More on Modules ¶ A module can contain executable statements as well as function definitions. These statements are intended to initialize the module. They are executed only the first time the module name is encount",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.7510483,
+          "rrf": 0.016129032,
+          "sparse_rank_score": [
+            2,
+            14.139096
+          ],
+          "dense_rank_score": null
+        },
+        {
+          "chunk_id": "5069:1",
+          "source_id": "python-official",
+          "excerpt": "s http.server. HTTPServer ( server_address , RequestHandlerClass ) ¶ This class builds on the TCPServer class by storing the server address as instance variables named server_name and server_port . The server is accessible by the handler, t",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.797958,
+          "rrf": 0.015873017,
+          "sparse_rank_score": [
+            3,
+            13.253973
+          ],
+          "dense_rank_score": null
+        },
+        {
+          "chunk_id": "5075:5",
+          "source_id": "python-official",
+          "excerpt": "xt or encrypted. They should be salted and hashed using a cryptographically strong one-way (irreversible) hash function. Generate a ten-character alphanumeric password with at least one lowercase character, at least one uppercase character,",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.8176453,
+          "rrf": 0.015384615,
+          "sparse_rank_score": [
+            5,
+            11.124406
+          ],
+          "dense_rank_score": null
+        },
+        {
+          "chunk_id": "5027:9",
+          "source_id": "mdn-official",
+          "excerpt": "log(e.currentTarget === this); // logs `true` }); As a reminder, arrow functions do not have their own this context . js myElement.addEventListener(\"click\", (e) => { console.log(this.className); // WARNING: `this` is not `myElement` console",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.7622983,
+          "rrf": 0.015151516,
+          "sparse_rank_score": [
+            6,
+            10.9827
+          ],
+          "dense_rank_score": null
+        }
+      ],
+      "gated_chunks": []
+    },
+    {
+      "id": "confirmation-negative-3",
+      "query": "Hãy cho biết mã OTP hiện tại của tài khoản cá nhân tôi.",
+      "judgments": [],
+      "max_dense": 0.8010298,
+      "threshold": 0.84,
+      "top_k": 5,
+      "branch_filters": {
+        "dense": {
+          "must": [
+            {
+              "key": "version",
+              "match": {
+                "value": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+              }
+            },
+            {
+              "key": "approval_state",
+              "match": {
+                "value": "approved"
+              }
+            }
+          ]
+        },
+        "bm25": {
+          "must": [
+            {
+              "key": "version",
+              "match": {
+                "value": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+              }
+            },
+            {
+              "key": "approval_state",
+              "match": {
+                "value": "approved"
+              }
+            }
+          ]
+        }
+      },
+      "top_hits": [
+        {
+          "chunk_id": "5023:7",
+          "source_id": "mdn-official",
+          "excerpt": "u don't want to make generally available. This makes user account access one of the most valuable targets for attackers. In this set of guides we'll look at the main techniques available for authenticating users on the web, and good practic",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.8005837,
+          "rrf": 0.016393442,
+          "sparse_rank_score": [
+            1,
+            6.556342
+          ],
+          "dense_rank_score": null
+        }
+      ],
+      "gated_chunks": []
+    },
+    {
+      "id": "confirmation-negative-4",
+      "query": "Who won the football match happening right now?",
+      "judgments": [],
+      "max_dense": 0.7554181,
+      "threshold": 0.84,
+      "top_k": 5,
+      "branch_filters": {
+        "dense": {
+          "must": [
+            {
+              "key": "version",
+              "match": {
+                "value": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+              }
+            },
+            {
+              "key": "approval_state",
+              "match": {
+                "value": "approved"
+              }
+            }
+          ]
+        },
+        "bm25": {
+          "must": [
+            {
+              "key": "version",
+              "match": {
+                "value": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+              }
+            },
+            {
+              "key": "approval_state",
+              "match": {
+                "value": "approved"
+              }
+            }
+          ]
+        }
+      },
+      "top_hits": [
+        {
+          "chunk_id": "5013:3",
+          "source_id": "docker-official",
+          "excerpt": "u can use your Google or GitHub account to authenticate. Create your first repository Sign in to Docker Hub . Select the Create repository button in the top-right corner. Select your namespace (most likely your username) and enter docker-qu",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.6895093,
+          "rrf": 0.016393442,
+          "sparse_rank_score": [
+            1,
+            15.471388
+          ],
+          "dense_rank_score": null
+        },
+        {
+          "chunk_id": "5109:15",
+          "source_id": "python-official",
+          "excerpt": "ng is raised if a character set contains constructs that will change semantically in the future. | ¶ A|B , where A and B can be arbitrary REs, creates a regular expression that will match either A or B . An arbitrary number of REs can be se",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.7024678,
+          "rrf": 0.016129032,
+          "sparse_rank_score": [
+            2,
+            10.479847
+          ],
+          "dense_rank_score": null
+        },
+        {
+          "chunk_id": "5125:14",
+          "source_id": "python-official",
+          "excerpt": "t above) are never assigned to. Patterns can be arbitrarily nested. For example, if we have a short list of Points, with __match_args__ added, we could match it like this: class Point : __match_args__ = ( 'x' , 'y' ) def __init__ ( self , x",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.72076505,
+          "rrf": 0.015873017,
+          "sparse_rank_score": [
+            3,
+            9.450146
+          ],
+          "dense_rank_score": null
+        },
+        {
+          "chunk_id": "5053:5",
+          "source_id": "mdn-official",
+          "excerpt": "t lists guidelines and regulations, how-to's, and tools for checking and repairing accessibility problems with websites. Personalization to help browse safely This article discusses making web content accessible for those with vestibular di",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.70359045,
+          "rrf": 0.015384615,
+          "sparse_rank_score": [
+            5,
+            9.318116
+          ],
+          "dense_rank_score": null
+        },
+        {
+          "chunk_id": "5057:1",
+          "source_id": "mdn-official",
+          "excerpt": "will never be a CSS3 or a CSS4; rather, everything is now just \"CSS\" with individual CSS modules having version numbers. After CSS 2.1, the scope of the specification increased significantly and the progress on different CSS modules started",
+          "payload_version": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc",
+          "approval_state": "approved",
+          "dense": 0.7114444,
+          "rrf": 0.015151516,
+          "sparse_rank_score": [
+            6,
+            8.623617
+          ],
+          "dense_rank_score": null
+        }
+      ],
+      "gated_chunks": []
+    },
+    {
+      "id": "confirmation-negative-5",
+      "query": "Cho tôi giá vé tàu từ Huế đến Đà Nẵng vào ngày mai.",
+      "judgments": [],
+      "max_dense": 0.7610529,
+      "threshold": 0.84,
+      "top_k": 5,
+      "branch_filters": {
+        "dense": {
+          "must": [
+            {
+              "key": "version",
+              "match": {
+                "value": "e6803d8e2f0cda4c2ca928d1f4cc7000e2092a24b0cb7a42734bd89c8aa8e1fc"
+              }
+            },
+            {
+              "key": "approval_state",
+              "match": {
+                "value": "approved"
+              }
+            }
+          ]
+        }
+      },
+      "top_hits": [],
+      "gated_chunks": []
+    }
+  ]
+}

@@ -73,11 +73,9 @@ Tài liệu chuẩn cho bảo mật hiện hành. Quyết định liên quan:
 - Pickle chỉ nạp từ builder tin cậy; `ITLR_REQUIRE_ARTIFACT_MANIFEST=1` kiểm SHA256 inventory
   trước khi nạp. Hash không xác nhận tác giả nếu attacker sửa được cả file và manifest.
 - Reload fail-closed: artifacts lỗi/thiếu giữ engine cũ, `/health` trả 503 khi không nạp được.
-- Dependencies: `pip-audit` **0 advisory**, `npm audit` **0 vulnerability**, `npm ls minimatch`
-  dùng override `^11.0.1` (11.0.3). Không có ignore list lỗ hổng trong CI.
-- Bandit: **0 High**, 27 Medium, 46 Low — Medium chủ yếu là pickle và URL do operator cấu
-  hình; triage ở [BANDIT_TRIAGE_2026-10-30](../reports/BANDIT_TRIAGE_2026-10-30.md).
-  Không dùng `# nosec` để che finding mới.
+- Số liệu dependency audit, Bandit và residual risks theo ngày nằm trong
+  [security audit](../reports/cleanup/SECURITY_AUDIT.md). Triage pickle và URL do operator
+  cấu hình giữ tại [báo cáo lịch sử](../reports/BANDIT_TRIAGE_2026-10-30.md).
 
 ## 7. Ranh giới hạ tầng
 

@@ -1,0 +1,1131 @@
+path,git_at_entry,decision,files,reason
+.dockerignore,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+.env.docker.example,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+.env.example,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+.github/dependabot.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+.github/workflows/ci.yml,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+.gitignore,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+AGENTS.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+CHANGELOG.md,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+CONSTRAINTS.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+CONTRIBUTING.md,new,KEEP,1,Cleanup documentation or verification evidence
+Dockerfile,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+Makefile,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+README.md,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+README.vi.md,new,KEEP,1,Cleanup documentation or verification evidence
+RESEARCH_ITLR.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+SECURITY.md,new,KEEP,1,Cleanup documentation or verification evidence
+bin/refresh_env.sh,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+compose.agent.yml,untracked,REVIEW,1,Pre-existing untracked material retained
+compose.host-ollama.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+compose.local.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+compose.monitoring.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+compose.production.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+configs/collect.sources.json,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+configs/curated.resources.json,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+data/README.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+data/curated_resources.jsonl,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+data/licenses/Docker-Apache-2.0.txt,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+data/licenses/MDN-CC-BY-SA-2.5.html,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+data/licenses/Python-license.html,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/Caddyfile,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/DEPLOY.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/LOCAL_MODELS.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/PRODUCTION.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/api.env.example,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/compose.env.example,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/monitoring/alerts.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/monitoring/grafana/dashboards/itlr-rag.json,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/monitoring/grafana/provisioning/dashboards/dashboards.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/monitoring/grafana/provisioning/datasources/datasources.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/monitoring/loki-config.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/monitoring/otel-collector.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/monitoring/prometheus.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/monitoring/promtail.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/monitoring/tempo.yml,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/postgres.env.example,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+deploy/web.env.example,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docker-compose.yml,tracked,REVIEW,1,Legacy entry point or possible external import; kept pending compatibility evidence
+docs/API.md,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+docs/ARCHITECTURE.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/EVALUATION.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/PROJECT_MEMORY.md,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+docs/RAG.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/README.md,new,KEEP,1,Cleanup documentation or verification evidence
+docs/SECURITY.md,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+docs/TESTING.md,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+docs/architecture/AGENT_TOOL_CONTRACTS.md,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/architecture/AI_AGENT_ARCHITECTURE.md,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/architecture/AI_AGENT_AUDIT.md,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/architecture/AI_AGENT_DEPENDENCY_GRAPH.md,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/architecture/AI_AGENT_MIGRATION_PLAN.md,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/architecture/QDRANT_MIGRATION.md,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/architecture/REDIS_CACHE_DESIGN.md,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/architecture/SCALABILITY_PLAN.md,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/architecture/SECURITY_REVIEW.md,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-001-deepseek-primary-llm.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-002-centralized-artifact-paths.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-003-synthetic-interactions-policy.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-004-evaluation-design.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-005-cf-optional-decoupling.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-006-data-sources-licensing.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-007-artifact-versioning.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-008-admin-token.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-009-security-runtime-boundaries.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-011-chatbot-presentation-and-catalog-contract.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-012-calibrated-search-and-stream-completion.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-013-evidence-excerpt-budget.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-014-versioned-qdrant.md,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/decisions/ADR-015-staging-boundaries.md,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/deployment/README.md,new,KEEP,1,Cleanup documentation or verification evidence
+docs/development/README.md,new,KEEP,1,Cleanup documentation or verification evidence
+docs/evaluation/README.md,new,KEEP,1,Cleanup documentation or verification evidence
+docs/operations/README.md,new,KEEP,1,Cleanup documentation or verification evidence
+docs/review-2026-10-27.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+docs/security/README.md,new,KEEP,1,Cleanup documentation or verification evidence
+docs/superpowers/plans/2026-10-29-itrl-v2.md,tracked,ARCHIVE,1,Historical planning context retained in place
+docs/superpowers/specs/2026-10-29-itrl-v2-design.md,tracked,ARCHIVE,1,Historical planning context retained in place
+eval/adapt_real_data.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/bench_agent_gateway.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/bench_agent_http.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/bench_chunks_v3.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/bench_latency.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/build_ltr.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/engineering_confirmation_queries.jsonl,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/engineering_queries.jsonl,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/eval_cf.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/eval_fixture.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/eval_generation.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/eval_lexical_real.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/eval_off_policy.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/eval_offtopic.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/eval_qdrant_migration.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/eval_release_retrieval.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/eval_staging_holdout.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/eval_v2_real.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/evaluate_human.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/make_judgments.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/prepare_labeling_sheet.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/qdrant_native.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/release_queries.jsonl,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/run_all.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+eval/run_evaluation.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/__init__.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/agent_jobs.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/api/__init__.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/api/__main__.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/api/ratelimit.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/api/server.py,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+itlr/api/static/index.html,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/api/static/orbital-timeline.css,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/api/static/orbital-timeline.js,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/api/static/ui.js,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/api/streaming.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/chatbot/__init__.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/chatbot/agent_tools.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/chatbot/chatbot.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/chatbot/citations.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/chatbot/data/it_glossary.json,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/chatbot/data/it_roles.json,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/chatbot/intent_router.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/chatbot/knowledge_base.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/chatbot/llm_adapter.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/chatbot/llm_client.py,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+itlr/chatbot/opencode_client.py,tracked,REVIEW,1,Legacy entry point or possible external import; kept pending compatibility evidence
+itlr/chatbot/presentation.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/chatbot/provider_budget.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/chatbot/query_understanding.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/collect/__init__.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/collect/adapters.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/collect/chunk.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/collect/extract.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/collect/http.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/collect/normalize.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/collect/quality.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/collect/runner.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/collect/sources.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/collect/store.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/collect/url_util.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/config.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/core/__init__.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/core/ann.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/core/bm25.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/core/chunks.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/core/display.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/core/embeddings.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/core/pipeline.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/core/rag.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/core/recommender.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/core/rerank.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/data/__init__.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/data/generate_interactions.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/data/generate_items.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/engine.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/eval/__init__.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/eval/cf_eval.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/eval/diversity.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/eval/loader.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/eval/ltr_features.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/eval/metrics.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/eval/off_policy.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/eval/significance.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/indexv2.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/locking.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/observability/__init__.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/observability/metrics.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/observability/tracing.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/pipelines/__init__.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/pipelines/build_cf.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/pipelines/build_embeddings.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/pipelines/build_embeddings_v2.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/pipelines/build_model.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/pipelines/generate_interactions.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/retrieval/__init__.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/retrieval/bm25.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/retrieval/cache.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/retrieval/qdrant_artifacts.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/retrieval/service.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/retrieval/vector_store.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/utils/__init__.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/utils/repickle.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/utils/runtime_patches.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+itlr/versioning.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+pyproject.toml,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+pytest.ini,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+reports/AGENT_EVALUATION.md,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/AGENT_HARDENING_2026-11-18.md,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/ARCHITECTURE_REFACTOR_2026-10-30.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/AUDIT_2026-10-29.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/AUDIT_CYCLE_2026-11-02.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/AUDIT_INCREMENT_2026-10-30.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/AUDIT_PORTABILITY_2026-10-30.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/BANDIT_TRIAGE_2026-10-30.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/DOCKER_DEPLOYMENT_2026-10-31.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/FINAL_CODEBASE_FREEZE.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/FINAL_DUAL_MODE_E2E.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/FINAL_E2E_CERTIFICATION.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/FINAL_ENGINEERING_REVIEW.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/FINAL_MAINTAINABILITY_REVIEW.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/FINAL_PRODUCTION_AUDIT.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/FINAL_RELEASE_READINESS.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/FINAL_REMEDIATION.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/FULL_SYSTEM_AUDIT_2026-10-30.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/HARDENING_STREAM_2026-10-30.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/LOCAL_MODELS.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/PERFORMANCE_BENCHMARK.md,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/PIPELINE_AUDIT_2026-10-31.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/PONYTAIL_AUDIT.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/PONYTAIL_REVIEW.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/PRODUCTION_BLOCKERS_RESOLUTION.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/PRODUCTION_CHECKPOINT_2026-10-30.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/RELEASE_READINESS.md,untracked,REVIEW,1,Pre-existing untracked material retained
+reports/RELEASE_READINESS_FINAL.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/RELEASE_VALIDATION_2026-10-30.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/RESTRUCTURING_CONTINUATION_2026-10-30.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/SKILLS_INVENTORY.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/STAGING_READINESS.md,untracked,REVIEW,1,Pre-existing untracked material retained
+reports/V2_PRODUCT.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/V3_PROGRESS_2026-10-30.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/V3_RESTRUCTURING_2026-10-30.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/VALIDATION.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/architecture_bandit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/architecture_full_pytest.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/architecture_python_imports.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/architecture_template_benchmark.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/architecture_web_imports.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/audit-file-manifest-2026-10-31.tsv,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/bm25_postings_benchmark.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/cf_eval.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/chunks_v3_audit_experiment.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/chunks_v3_experiment.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/chunks_v3_unified_experiment.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/cleanup/BASELINE_AUDIT.md,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/BEFORE_AFTER_METRICS.md,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/DELETE_MANIFEST.md,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/DEPENDENCY_AUDIT.md,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/FILE_INVENTORY.csv,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/FINAL_VALIDATION.md,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/REFACTOR_CHANGELOG.md,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/RELEASE_READINESS.md,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/SECURITY_AUDIT.md,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/SHA256SUMS.txt,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/faiss-parity.json,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/holdout-after.json,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/holdout-before.json,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/ollama.json,new,KEEP,1,Cleanup documentation or verification evidence
+reports/cleanup/soak.json,new,KEEP,1,Cleanup documentation or verification evidence
+reports/curated_collection.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/enterprise-adapter.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/enterprise-after-python.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/enterprise-after-web.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/enterprise-before-python.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/enterprise-before-web.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/enterprise-docs.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/enterprise-inventory.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/enterprise-python-coverage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/enterprise-python.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/enterprise-web.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-bandit-triage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-bandit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-bandit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-docs.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-document-review.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/SHA256SUMS.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/ab-500.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/ab-800.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/ab-analysis.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/ab-none.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/ab_analysis.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/SHA256SUMS.txt,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/agent-e2e.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/bandit.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/cache-red.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/circuit-red.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/failure-recovery.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/graphify.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/handoff-red.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/isolated-phase-a-promote.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/jobs-completion.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/jobs-postgres.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/jobs-red.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/jobs-restart.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/jobs-worker-25-items.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/jobs-worker-embed.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/jobs-worker-ingest.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/jobs-worker-small-sample.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/native-diagnostics.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/native-red.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/npm-audit-runtime.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/npm-audit.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/ollama-agent-load.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/ollama-agent-load.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/ollama-provider-metrics.txt,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/pg-restore.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/principal-quota.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/principal-red.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/python-baseline.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/python-final.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/python-pip-audit.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/python-pip-check.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/qdrant-redis-lifecycle.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/redis-capacity.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/schema-replay.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/schema.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/search-cache-load.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/search-idle-load.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-hardening-2026-11-18/web-final.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/SHA256SUMS.txt,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/bandit.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/cache-layer-smoke.txt,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/cache-metrics.txt,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/cancellation.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/compose-build.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/compose-e2e.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/compose-migrate.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/compose-persistence.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/compose-promote.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/compose-reader-key.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/compose-resource-snapshot.txt,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/compose-stage.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/compose-sync.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/http-benchmark.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/npm-audit-runtime.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/npm-audit.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/pip-audit-updated.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/pip-audit.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/python-baseline.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/python-final.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/python-pip-check.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/qdrant-eval.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/qdrant-parity.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/qdrant-stage.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/redis-outage.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/service-integration.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/web-baseline.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/agent-platform-2026-11-18/web-final.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/api.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/artifact-lifecycle.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/audit-2026-10-31/audit-bandit-high.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/audit-2026-10-31/audit-npm-audit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/audit-2026-10-31/audit-python-coverage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/audit-2026-10-31/audit-retrieval.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/audit-2026-10-31/audit-web-build.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/audit-2026-10-31/audit-web-lint.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/audit-2026-10-31/audit-web-test.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/audit-2026-10-31/audit-web-typecheck.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/audit-2026-10-31/forgot-check.sql,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/audit-2026-10-31/schema-logic-check.sql,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/audit-2026-10-31/web-tests-final.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/backup-restore.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/bandit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/bandit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/bench-latency/itlr-bench-prompt.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/bench-latency/latency-summary.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/bench-latency/sweep.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/bench-latency/sweep.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/bench-latency/sweep.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/browser-db.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/browser_db_fresh.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/budget800-comparison.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/compileall.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dataset-and-protocol-sha256.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-local-2026-10-31/api-health.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-local-2026-10-31/build.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-local-2026-10-31/chat-events.sse,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-local-2026-10-31/compose-config.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-local-2026-10-31/compose-ps.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-local-2026-10-31/images.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-local-2026-10-31/ollama-host-models-override.yml,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-local-2026-10-31/web-ready.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-preflight.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/Caddyfile,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/Dockerfile.cpu,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/api-health.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/application-build.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/browser-final-result.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/browser-real-result.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/compose.yml,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/container-logs.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/docker-commands.jsonl,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/docker-result.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/docker-stats.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/image-identities.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/local-images.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/migration-1.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/migration-2.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/observer-evidence/provider-sockets.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/observer.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/pg-dump.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/pg-restore.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/provider-probes.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/real-chat-events.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/restart-services.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/seed-fixture.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/docker-resume-1031c/web-health.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/docker/api-chat.sse,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/docker/build.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/docker/cancel.sse,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/docker/environment.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/docker/web-chat.sse,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/api-chat.sse,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/api-final.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/api.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/cancel.sse,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/environment.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/web-chat.sse,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/web.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/python-coverage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/python-tests.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/test_config_artifact_override.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/dual-mode-2026-10-31/web-tests.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/docker-model-pull.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/docker-pulled-chat.sse,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/host-pg.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/hostollama-chat.sse,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/hostpg-web.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/hostpg-web2.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/human-summary.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/ollama-11435.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/frozen-eval.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/frozen_eval.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/frozen_eval_ab.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/gate-results.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/gate-summary.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/generation-eval-ab-500.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/generation-eval-ab-800.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/generation-eval-ab-none.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/generation-eval.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/http-db.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/human-faithfulness-2026-10-31/README.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/human-faithfulness-2026-10-31/summary.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/human-review-packet.jsonl,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/npm-audit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/npm-audit.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/npm-lock.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/api-rebuild.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/build.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/chat-events.sse,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/compose-ps.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/docker-stats.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/grafana-dashboard.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/grafana-datasources.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/loki-sample.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/loki-verify.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/prom-rules.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/prom-targets.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/tempo-search.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/tempo-trace-sse.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/observability-2026-10-31/tempo-verify.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/pip-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/pip-audit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/pip-check.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/python-coverage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/python-tests.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/application-build.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/bench_components.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/browser-final-release.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/browser-final-result.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/cold_check.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/components-cold.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/components-warm.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/components-warm.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/docker-result.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/driver-console-release.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/frozen-none.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/human_review_scoring_sheet.csv,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/image-identities.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/old-schema-upgrade.sql,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/python-coverage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/release-frozen-none.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/release-pg-check.sql,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/release-pip-audit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/release-web-test.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/reliability/conc-n1.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/reliability/conc-n2.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/reliability/conc-n4.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/reliability/rss-release.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/release-2026-10-31/reliability/soak-n1.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/cancel-n1.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/conc-n1.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/conc-n2.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/conc-n4.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/db-after-recovery.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/db-before-crash.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/health-n1.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/load.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/reliability-summary.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/rss-n1.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/soak-n1.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/tour.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/tour.sh,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/tour2.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/reliability-load/tour2.sh,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/sse-registry.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/SHA256SUMS.txt,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/annotation-manifest.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/annotation-packet.jsonl,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/backup.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/bandit.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/cloud-red.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/compose-config.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/epoch-restart.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/failure.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/graphify.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/holdout.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/jobs.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/lifecycle.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/npm-audit.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/npm-runtime.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/npm-safe-dry-run.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/ollama-usage.prom,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/ollama.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/ollama.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/ownership-red.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/picomatch-tree.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/python-baseline.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/python-coverage.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/python-final.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/replicas.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/review-sheet.csv,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/scope-red.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/secret-redaction-green.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/secret-redaction-red.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/soak.json,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/test-host.txt,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/web-baseline.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/staging-sprint-2026-11-18/web-final.log,untracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/tls-smoke.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/web-build.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/web-lint.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/web-tests.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-e2e-evidence/web-typecheck.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/bandit-triage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/bandit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/browser.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/browser.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/browser_wrapper.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/budget-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/budget-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/build.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/calibrate.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/calibration.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/cleanup-python.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/compare_generation.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/coverage_run.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/docker.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/docs.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/eval_runtime_search.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/expansion-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/expansion-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/final-python.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/generation-before-profile.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/history-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/history-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/inventory.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/inventory.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/lint.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/live-api-server.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/live-api.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/live-api.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/live-budget.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/live_api.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/live_budget.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/npm-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/persistence-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/persistence-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/pip-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/pip-audit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/pip-check.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/postgresql.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/prepare-after.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/prepare-before.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/profile_generation.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/prompt-experiment.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/prompt_experiment.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/python-coverage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/python-status.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/raw-release.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/raw_release.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/refactor-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/reranker-load.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/runtime-boundary-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/runtime-boundary-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/runtime-observations.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/runtime-search-after-glossary.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/runtime-search-before-expansion-fix.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/runtime-search.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/sampling-comparison.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/sse-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/sse-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/structure.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/temporary-ports.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/threshold-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/threshold-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/threshold-selection.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/typecheck.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/web-coverage-summary.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-engineering-evidence/web-tests-outside.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-focused-python.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-focused-web.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-import-smoke.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-links.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-nonstream-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-npm-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-ollama-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-pip-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-pip-audit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-prewarm-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-python-coverage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-python-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-python.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-secret-scan.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-stream-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-web-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/final-web.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/fixture_eval.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/api.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/api.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/bandit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/baseline-python-outside.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/browser.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/browser.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/build-e5.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/build-lexical.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/coverage_run.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/docs.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/e5.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/embeddings-manifest.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/environment.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/final-python.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/generation.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/generation.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/ingestion.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/inventory.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/manifest-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/manifest-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/npm-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/npm-ci.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/ollama-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/ollama-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/pip-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/pip-check.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/probe-before.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/probe-fresh.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/probe-fresh.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/probe.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/python-coverage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/python-packages.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/python-status.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/retrieval-lexical.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/retrieval-neural.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/runtime-before.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/runtime.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/runtime.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/semaphore-probe.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/threaded-reload.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/timeout-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/timeout-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/ui-claim-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/ui-claim-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/web-build.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/web-coverage-summary.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/web-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/web-lint.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/web-tests-outside.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/full-system-audit-evidence-2026-10-30/web-typecheck.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/generation_eval_template.csv,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/generation_eval_template.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/generation_eval_template.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/hardening-baseline.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/hardening-final.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/hardening-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/hardening-lexical.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/hardening-lexical.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/hardening-portability-confirm.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/hardening-portability.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/hardening-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/hardening-review.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/hardening-utf8.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/hardening-web.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/human_eval.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/journey_browser_smoke.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/latency.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/learning-desktop.png,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/learning-mobile.png,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/local_embedding_smoke.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/local_models_smoke.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/off_policy.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/offtopic_eval.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/per_query.csv,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/per_query_kw_noisy.csv,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/HUMAN_REVIEW_PROTOCOL.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/PROFILE_FINDINGS.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/async-sdk-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/async-utf8-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/async-utf8-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/bandit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/bandit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/browser-cancellation-first-harness-failure.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/browser-cancellation-first-harness-failure.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/browser-cancellation-navigation-harness-failure.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/browser-cancellation-review.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/browser-cancellation.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/browser-cancellation.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/browser_cancellation.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/build.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/build_inventory.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/cancel-api.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/cancel-cleanup.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/cancel-proxy.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/cancellation-agent-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/cancellation-agent-review.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/cancellation-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/cancellation-proxy.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/cancellation-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/cancellation-regression-before.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/cancellation_proxy.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/citation-support-spotcheck.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/cleanup_cancellation_services.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/compileall.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/context-experiment.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/context-experiment.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/context_experiment.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/coverage_run.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/dev-context-prepared.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/docker-environment.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/docker-sudo-preflight.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/eval_generation.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/final-api-focused.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/final-checks.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/frozen-blind-cases.jsonl,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+reports/production-blockers-evidence/generation-eval.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/generation-eval.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/generation-summary.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/git-diff-numstat.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/git-status.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/handoff-checks.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/human-review-packet.jsonl,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/inventory.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/lint.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/npm-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/npm-audit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/pip-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/pip-audit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/pip-check.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/post-eval-runner-idle.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/prepare-context.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/prepare_context.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/profile-local.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/profile-local.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/profile-ollama-ps.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/profile-ollama-tags.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/profile-summary.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/profile_local.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/python-coverage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/python-status.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/python-tests.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/rootless-preflight.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/send-disconnect-agent.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/staging-EMBEDDINGS_MANIFEST.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/staging-MANIFEST.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/start_cancellation_services.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/summarize_profile.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/typecheck.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production-blockers-evidence/web-tests.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production_bandit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production_fixture_eval.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production_pip_audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production_pytest.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production_pytest_external.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/production_static_imports.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/qwen_live_smoke.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-bandit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-bandit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-doc-check.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-eval-bandit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-eval-bandit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-final-checks.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-focused.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-npm-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-pip-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-pip-audit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-python-coverage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-python.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/HUMAN_REVIEW_PROTOCOL.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/POSTGRES_STAGING_SUMMARY.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/artifact-lifecycle.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/artifact-lifecycle.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/artifact_lifecycle.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/backup-restore-result.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/backup-restore.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/backup_restore.cjs,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/bandit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/bandit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/blind_cases.jsonl,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/blind_protocol.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/browser-db-result.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/browser-db.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/browser_db.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/build.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/build_inventory.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/cancellation_cleanup_pattern.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/cancellation_cleanup_pattern.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/cancellation_repro.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/cancellation_repro.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/cleanup_db_services.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/compileall.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/coverage_run.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/db-cleanup-result.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/db_query.cjs,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/direct-generation.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/direct-generation.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/direct_generation.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/final-review-checks.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/git-diff-numstat.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/git-status.txt,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/http-db-before-parser-fix.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/http-db-first-fixture-failure.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/http-db-result.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/http-db.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/http_db_journeys.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/human_eval_supplement.jsonl,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/human_review_scoring_sheet.csv,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/inventory.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/lint.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/measurement-summary.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/migration-1.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/migration-2.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/migration-result.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/npm-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/npm-audit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/ollama-list.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/ollama-ps.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/ollama-ps.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/ollama-tags.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/pdf-build.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/pdf-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/pdf-lint.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/pdf-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/pdf-typecheck.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/pg-download.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/pg-shutdown.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/pip-audit.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/pip-audit.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/pip-check.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/python-coverage.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/python-status.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/python-tests.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/query-diagnostics.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/resources-with-runner.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/retrieval-independent.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/retrieval_diagnostic.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/review.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/runtime-server.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/runtime.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/runtime.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/runtime.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/sample_runner.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/setup_db.cjs,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/staging-EMBEDDINGS_MANIFEST.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/staging-MANIFEST.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/start_services.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/tls-smoke-result.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/tls-smoke.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/tls_smoke.py,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/typecheck.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/ui-green.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/ui-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/upstream_fixture.cjs,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-readiness-evidence/web-tests.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-retrieval.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-retrieval.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-staging-static.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-stream-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/release-web.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/restructure-inventory.json,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/restructure-links.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/restructure-python.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/restructure-red.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/restructure-targeted.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/restructure-web.log,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/results.csv,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/results_kw_noisy.csv,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/tables.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+reports/tables_kw_noisy.md,tracked,ARCHIVE,1,Historical or supporting evidence retained at the original path
+requirements.txt,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+scripts/audit_source_links.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/build_all.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/build_all_v2.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/check_agent_capacity.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/check_agent_jobs.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/check_agent_services.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/check_agent_web.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/check_staging_replicas.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/collect_curated.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/collect_data.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/export_web_catalog.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/import_curated_snapshot.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/refresh_pipeline.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/verify_local_models.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/verify_staging_browser.cjs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+scripts/verify_web_catalog.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tasks/plan.md,tracked,ARCHIVE,1,Historical planning context retained in place
+tasks/todo.md,tracked,ARCHIVE,1,Historical planning context retained in place
+tests/conftest.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_admin_security_cf.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_agent_jobs.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_agent_tools.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_ann.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_ann_active_version.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_api_hardening.py,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+tests/test_api_integration.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_artifact_integrity.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_audit_regressions.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_audit_source_links.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_bm25_refit.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_build_all_v2_cli.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_build_model_load.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_cache.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_catalog_export_safety.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_chat_admission.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_chatbot_llm_adapter.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_chatbot_prepare_pipeline.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_chatbot_presentation.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_chatbot_retrieval_fixes.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_chunk_contract.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_chunks_v3.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_collect_crawl.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_collect_reconcile.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_collect_runner.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_collect_store_close.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_collect_utils.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_config_artifact_override.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_curated_collection.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_embedding_presets.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_engine_reload.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_engineering_eval.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_env_examples.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_eval_generation.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_eval_integrity.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_eval_loader.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_eval_metrics_diversity.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_eval_scripts_paths.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_evidence_binding.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_evidence_binding_edges.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_export_web_catalog.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_generate_interactions.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_grounded_citations.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_http_layer.py,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+tests/test_index_probe.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_lexical_real_eval.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_lifecycle_robustness.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_llm_async.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_llm_client.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_loaded_fingerprint.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_locking.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_markdown_links.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_native_dense_gate.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_normalize.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_observability.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_offtopic_gate.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_pickle_handles.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_pipeline_fixture.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_provider_budget.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_provider_cache_usage.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_provider_circuit.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_rag_query_utils.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_real_source_text.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_release_eval.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_retrieval_service.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_scripts_and_configs.py,tracked,REFACTOR,1,Changed this cleanup; details in refactor changelog
+tests/test_significance.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_staging_scope.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_static_security.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_stream_cancellation.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_vector_store.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_verify_web_catalog.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_versioning.py,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+tests/test_web_chat_principal.py,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+var/data/eval/generation_testset.csv,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+var/data/eval/human_judgments.csv,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+var/data/eval/offtopic_testset.csv,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+var/data/eval/relevance_judgments.csv,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+var/data/eval/relevance_keyword.csv,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+var/data/interactions.csv,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+var/data/interactions_backup_500users.csv,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+var/data/it_learning_items.csv,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/.dockerignore,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/.env.example,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/.gitignore,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/.prettierrc,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/Dockerfile,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/SECURITY_REMEDIATION.md,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/docker-entrypoint.sh,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/eslint.config.mjs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/nodemon.json,tracked,DELETE,1,Unused Nodemon configuration; supported npm script uses tsx
+web/package-lock.json,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/package.json,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/app.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/app.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/config/catalog.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/config/env.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/config/env.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/db/check.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/db/migrate.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/db/pool.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/db/pool.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/db/schema.sql,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/db/seed-courses.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/db/sync-courses.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/db/types.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/middleware/auth.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/middleware/auth.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/middleware/security.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/middleware/security.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/middleware/uploads.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/middleware/uploads.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/public/app.js,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/public/chat-stream.js,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/public/fonts/inter-latin-ext.woff2,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/public/fonts/inter-latin.woff2,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/public/fonts/inter-vietnamese.woff2,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/public/init.js,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/public/learning.css,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/public/learning.js,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/public/styles.css,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/admin-login.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/admin-security.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/admin.routes.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/agent.routes.ts,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/agent.test.ts,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/api.routes.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/auth-security.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/auth.routes.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/chat-page.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/chat.handlers.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/chat.routes.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/handoff.test.ts,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/learning.routes.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/learning.routes.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/lesson-progress.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/media-range.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/pages.routes.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/password-reset.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/realtime-lifecycle.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/session-revocation.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/social.routes.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/routes/upload-extraction.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/server.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/catalog-csv.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/chat-client.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/chat-history.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/chat-history.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/chat-stream.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/chat-stream.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/chat-ui.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/dataset-extract.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/dataset-extract.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/dataset.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/dataset.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/handoff.ts,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/http-range.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/learning-resources.ts,untracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/learning.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/learning.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/lesson-progress.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/mailer.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/mailer.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/markdown.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/markdown.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/metrics.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/metrics.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/password.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/posts.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/realtime.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/recommender-stream.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/recommender.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/social.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/social.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/services/static-ui.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/account.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/admin-catalog.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/admin-login.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/admin-manage.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/admin-pending.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/admin.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/auth/forgot.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/auth/login.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/auth/register.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/auth/reset.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/blog.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/chat.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/course.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/dashboard.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/error.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/friends.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/home.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/learning.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/messages.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/partials/admin-footer.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/partials/admin-header.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/partials/auth-aside.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/partials/avatar.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/partials/course-card.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/partials/csrf.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/partials/footer.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/partials/header.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/partials/post.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/profile.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/search.ejs,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/src/views/views.test.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/tsconfig.json,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+web/vitest.config.ts,tracked,KEEP,1,"Runtime, source, configuration, test, build, or retained documentation"
+**/__pycache__,ignored group,REVIEW,290,Ignored files preserved; raw path inventory stays in private scratch
+.pytest_cache,ignored group,REVIEW,5,Ignored files preserved; raw path inventory stays in private scratch
+.venv,ignored group,REVIEW,38344,Ignored files preserved; raw path inventory stays in private scratch
+var/artifacts,ignored group,REVIEW,1,Ignored files preserved; raw path inventory stays in private scratch
+var/data,ignored group,REVIEW,1,Ignored files preserved; raw path inventory stays in private scratch
+web/coverage,ignored group,REVIEW,55,Ignored files preserved; raw path inventory stays in private scratch
+web/dist,ignored group,REVIEW,187,Ignored files preserved; raw path inventory stays in private scratch
+web/node_modules,ignored group,REVIEW,7671,Ignored files preserved; raw path inventory stays in private scratch

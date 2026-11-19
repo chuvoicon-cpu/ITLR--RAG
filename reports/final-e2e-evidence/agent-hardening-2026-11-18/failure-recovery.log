@@ -1,0 +1,1 @@
+Redis pause rejected quota; Qdrant pause kept liveness and returned readiness/search 503; both recovered 200

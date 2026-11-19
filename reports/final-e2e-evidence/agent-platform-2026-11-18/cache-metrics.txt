@@ -1,0 +1,2 @@
+itlr_cache_events_total{layer="response",outcome="hit"} 21.0
+itlr_cache_events_total{layer="response",outcome="miss"} 1.0
